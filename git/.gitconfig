@@ -1,0 +1,10 @@
+[user]
+	name = Luke Pomfrey
+	email = {{ email }}
+[color]
+    ui = true
+[help]
+    autocomplete = 1
+[github]
+	user = lpomfrey
+	token = {{ github_token }}
