@@ -25,8 +25,8 @@ def _get_template_context(*args):
     for var in args:
         confirmed = False
         while not confirmed:
-           context[var] = raw_input('Enter %s :' % var)
-           answer = raw_input('Got %s. Is this correct? [Yn]' % context[var])
+           context[var] = raw_input('Enter %s :\t' % var)
+           answer = raw_input('Got %s. Is this correct? [Yn]\t' % context[var])
            if not answer or answer.lower().startswith('y'):
                confirmed = True
     return context
@@ -52,7 +52,24 @@ def _create_backup(dst):
 
 
 def _make_link(src, dst):
-    backup = _create_backup(dst)
+    backup = False
+    if os.path.exists(dst):
+        action = raw_input('%s exists? [B]ackup [o]verwrite ' \
+                           '[c]ancel [a]bort\t' % dst)
+        if action.lower().startswith('o'):
+            logging.info('Overwriting %s with link to %s.' % (dst, src))
+            try:
+                os.remove(dst.rstrip('/'))
+            except:
+                os.rmdir(dst.rstrip('/'))
+        elif action.lower().startswith('c'):
+            logging.info('Not installing %s.' % src)
+            return 
+        elif action.lower().startswith('a'):
+            logging.info('Aborting...')
+            exit(1)
+        else:
+            backup = _create_backup(dst)
     try:
         logging.info('Linking %s %s' % (src.rstrip('/'), dst.rstrip('/')))
         os.symlink(src.rstrip('/'), dst.rstrip('/'))
@@ -73,7 +90,24 @@ def _make_link(src, dst):
 
 
 def _make_copy(src, dst):
-    backup = _create_backup(dst)
+    backup = False
+    if os.path.exists(dst):
+        action = raw_input('%s exists? [B]ackup [o]verwrite ' \
+                           '[c]ancel [a]bort\t' % dst)
+        if action.lower().startswith('o'):
+            logging.info('Overwriting %s with %s.' % (dst, src))
+            try:
+                os.remove(dst.rstrip('/'))
+            except:
+                os.rmdir(dst.rstrip('/'))
+        elif action.lower().startswith('c'):
+            logging.info('Not installing %s.' % src)
+            return 
+        elif action.lower().startswith('a'):
+            logging.info('Aborting...')
+            exit(1)
+        else:
+            backup = _create_backup(dst)
     try:
         shutil.copy2(src, dst)
     except:
@@ -92,7 +126,24 @@ def _make_copy(src, dst):
 
 
 def _save_template(src, dst, context):
-    backup = _create_backup(dst)
+    backup = False
+    if os.path.exists(dst):
+        action = raw_input('%s exists? [B]ackup [o]verwrite ' \
+                           '[c]ancel [a]bort\t' % dst)
+        if action.lower().startswith('o'):
+            logging.info('Overwriting %s with %s.' % (dst, src))
+            try:
+                os.remove(dst.rstrip('/'))
+            except:
+                os.rmdir(dst.rstrip('/'))
+        elif action.lower().startswith('c'):
+            logging.info('Not installing %s.' % src)
+            return 
+        elif action.lower().startswith('a'):
+            logging.info('Aborting...')
+            exit(1)
+        else:
+            backup = _create_backup(dst)
     if isinstance(context, basestring):
         context = context.split(',')
     context = _get_template_context(*context)
@@ -121,7 +172,7 @@ def install():
     config.read(os.path.join(basedir, 'dotfiles.conf'))
 
     for section in config.sections():
-        install = raw_input('Install %s? [Yn]' % section)
+        install = raw_input('Install %s? [Yn]\t' % section)
         if install and not install.lower().startswith('y'):
             continue
         sectiondir = os.path.join(basedir, section).rstrip('/')
