@@ -2,9 +2,13 @@ import ConfigParser
 import glob
 import os
 import shutil
+import logging
 
 import jinja2
 from fabric.api import local
+
+
+logging.basicConfig(level=logging.INFO)
 
 
 def _render_template(template, context):
@@ -30,7 +34,7 @@ def _get_template_context(*args):
 def _create_backup(dst):
     if os.path.exists(dst):
         backup = backup_orig = '%s.backup' % dst.rstrip('/')
-        print('Creating backup of %s at %s' % (dst, backup))
+        logging.info('Creating backup of %s at %s' % (dst, backup))
 
         i = 1
         while os.path.exists(backup):
@@ -38,9 +42,9 @@ def _create_backup(dst):
             i += 1
 
         try:
-            os.rename(dst, backup)
+            os.rename(dst.rstrip('/'), backup)
         except:
-            print('Couldn\'t create backup, aborting...')
+            logging.exception('Couldn\'t create backup, aborting...')
             exit(1)
         else:
             return backup
@@ -50,19 +54,20 @@ def _create_backup(dst):
 def _make_link(src, dst):
     backup = _create_backup(dst)
     try:
-        print 'Linking %s %s' % (src.rstrip('/'), dst.rstrip('/'))
+        logging.info('Linking %s %s' % (src.rstrip('/'), dst.rstrip('/')))
         os.symlink(src.rstrip('/'), dst.rstrip('/'))
     except:
         if not backup:
-            print('Failed to link %s' % src)
+            logging.error('Failed to link %s' % src)
         else:
-            print('Failed to link %s, attempting to restore from backup...' \
-                    % src)
+            logging.info('Failed to link %s, attempting to restore ' \
+                         'from backup...' % src)
             try:
-                shutil.move(backup, dst)
-                print('Restored')
+                os.rename(backup, dst)
+                logging.info('Restored')
             except:
-                print('Failed to restore backup %s. Aborting...' % backup)
+                logging.error('Failed to restore backup %s. Aborting...' \
+                              % backup)
                 exit(1)
 
 
@@ -73,14 +78,16 @@ def _make_copy(src, dst):
         shutil.copy2(src, dst)
     except:
         if not backup:
-            print('Failed to copy %s' % src)
+            logging.error('Failed to copy %s' % src)
         else:
-            print('Failed to copy %s, attempting to restore from backup...')
+            logging.info('Failed to copy %s, attempting to restore ' \
+                         'from backup...' % src)
             try:
-                shutil.move(backup, dst)
-                print('Restored')
+                os.rename(backup, dst)
+                logging.info('Restored')
             except:
-                print('Failed to restore backup %s. Aborting...' % backup)
+                logging.error('Failed to restore backup %s. ' \
+                              'Aborting...' % backup)
                 exit(1)
 
 
@@ -95,14 +102,16 @@ def _save_template(src, dst, context):
             f.write(content)
     except:
         if not backup:
-            print('Failed to write %s' % src)
+            logging.error('Failed to write %s' % src)
         else:
-            print('Failed to write %s, attempting to restore from backup...')
+            logging.info('Failed to write %s, attempting to restore ' \
+                         'from backup...' % src)
             try:
-                shutil.move(backup, dst)
-                print('Restored')
+                os.rename(backup, dst)
+                logging.info('Restored')
             except:
-                print('Failed to restore backup %s. Aborting...' % backup)
+                logging.error('Failed to restore backup %s. ' \
+                              'Aborting...' % backup)
                 exit(1)
 
 
@@ -170,7 +179,7 @@ def install():
                 dst = copy.lstrip(sectiondir).lstrip('/')
                 dst = os.path.expanduser(os.path.join('~', dst))
                 _make_copy(copy, dst)
-                print 'Copying %s to %s' % (copy, dst)
+                logging.info('Copying %s to %s' % (copy, dst))
 
         for template in templates:
             if not (link.endswith('dotfile.preinstall') \
@@ -187,4 +196,4 @@ def install():
         postinstall = os.path.join(sectiondir, 'dotfile.postinstall')
         if os.path.exists(postinstall) and os.access(postinstall, os.X_OK):
             local(postinstall)
-        print 'Installed %s...' % section
+        logging.info('Installed %s...' % section)
