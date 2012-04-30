@@ -27,6 +27,8 @@ endif
 " turn on this option as well
 set background=light
 "let g:solarized_termcolors=16
+let g:solarized_contrast="high"
+"let g:solarized_visibility="high"
 let g:solarized_termtrans=1
 colorscheme solarized
 
