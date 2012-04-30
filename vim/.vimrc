@@ -25,8 +25,8 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=dark
-let g:solarized_termcolors=16
+set background=light
+"let g:solarized_termcolors=16
 let g:solarized_termtrans=1
 colorscheme solarized
 
