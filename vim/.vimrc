@@ -23,15 +23,16 @@ if has("syntax")
   syntax on
 endif
 
+syntax enable
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
-set t_Co=256
-let g:solarized_termcolors=256
+"set term=xterm
+let g:solarized_termcolors=16
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 let g:solarized_termtrans=1
-"colorscheme solarized
+colorscheme solarized
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file

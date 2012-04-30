@@ -104,3 +104,5 @@ fi
 
 # Bashmarks
 . ~/.local/bin/bashmarks.sh
+
+eval `dircolors ~/.dir_colors`
