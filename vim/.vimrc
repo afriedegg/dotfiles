@@ -25,12 +25,13 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=light
-"let g:solarized_termcolors=16
+set background=dark
+set t_Co=256
+let g:solarized_termcolors=256
 let g:solarized_contrast="high"
-"let g:solarized_visibility="high"
+let g:solarized_visibility="high"
 let g:solarized_termtrans=1
-colorscheme solarized
+"colorscheme solarized
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -120,12 +121,6 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-if &term=="xterm"
-     set t_Co=8
-     set t_Sb=^[4%dm
-     set t_Sf=^[3%dm
-endif
-
 map <F4> <Esc>:%s/\s\+$//g<CR>
 
 map! <F2> <ESC>:set paste<CR>a
@@ -137,4 +132,3 @@ if !exists("autocommands_loaded")
 endif
 map <F2> <Esc>:set paste<CR>i
 map <F3> <Esc>:set nopaste<CR>i
-
