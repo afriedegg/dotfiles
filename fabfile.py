@@ -53,7 +53,7 @@ def _create_backup(dst):
     return False
 
 
-def _install_file(action, src, dst, *args, **kwargs):
+def _install_file(method, src, dst, *args, **kwargs):
     backup = False
     failure = False
     if os.path.exists(dst):
@@ -73,7 +73,7 @@ def _install_file(action, src, dst, *args, **kwargs):
             exit(1)
         else:
             backup = _create_backup(dst)
-    if action == 'template':
+    if method == 'template':
         if 'context' in kwargs:
             context = kwargs.get('context')
         elif args:
@@ -90,14 +90,14 @@ def _install_file(action, src, dst, *args, **kwargs):
                 f.write(content)
         except:
             failure = True
-    elif action == 'link':
+    elif method == 'link':
         try:
             logging.debug('Linking %s to %s' \
                             % (src.rstrip('/'), dst.rstrip('/')))
             os.symlink(src.rstrip('/'), dst.rstrip('/'))
         except:
             failure = True
-    elif action == 'copy':
+    elif method == 'copy':
         try:
             logging.debug('Copying %s to %s' \
                             % (src.rstrip('/'), dst.rstrip('/')))
@@ -105,7 +105,7 @@ def _install_file(action, src, dst, *args, **kwargs):
         except:
             failure = True
     else:
-        logging.info('%(a)s? %(a)s? WTF is %(a)s?' % {'a': action})
+        logging.info('%(a)s? %(a)s? WTF is %(a)s?' % {'a': method})
     if failure:
         if not backup:
             logging.error('Failed to write %s' % src)
@@ -135,7 +135,7 @@ def install():
         install = raw_input('Install %s? [Yn]\t' % section_name)
         if install and not install.lower().startswith('y'):
             continue
-        if stype == 'file':
+        if stype == 'files':
             sectiondir = os.path.join(basedir, section_name).rstrip('/')
             preinstall = os.path.join(sectiondir, 'dotfile.preinstall')
             if os.path.exists(preinstall) and os.access(preinstall, os.X_OK):
@@ -193,8 +193,8 @@ def install():
                     _install_file('copy', copy, dst)
 
             for template in templates:
-                if not (link.endswith('dotfile.preinstall') \
-                        or link.endswith('dotfile.postinstall')):
+                if not (template.endswith('dotfile.preinstall') \
+                        or template.endswith('dotfile.postinstall')):
                     try:
                         context_vars = config.get(section, 'template_context')
                     except ConfigParser.NoOptionError:

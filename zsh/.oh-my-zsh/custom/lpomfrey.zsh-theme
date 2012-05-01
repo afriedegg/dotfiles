@@ -10,7 +10,7 @@ function virtualenv_info {
     echo "$VENV_PROMPT_BEFORE$(basename $VIRTUAL_ENV)$VENV_PROMPT_AFTER"
 }
 
-VENV_PROMPT_BEFORE="%{$fg_bold[blue]%}venv%{$fg_no_bold[blue]%}:(%{$fg_no_bold[yellow]%}"
+VENV_PROMPT_BEFORE="%{$fg_no_bold[blue]%}venv%{$fg_no_bold[blue]%}:(%{$fg_no_bold[yellow]%}"
 VENV_PROMPT_AFTER="%{$fg_no_bold[blue]%}) %{$reset_color%}"
 
 PROMPT='%{$fg_no_bold[yellow]%}%n%{$reset_color%}%{$fg_no_bold[yellow]%}@%m%{$reset_color%}%{$fg_no_bold[cyan]%}:%{$reset_color%}%{$fg_no_bold[cyan]%}${PWD/#$HOME/~}$ %{$reset_color%}'
