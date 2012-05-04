@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/lukepomfrey/Projects/environments/all/src/crazymusic/crazymusic/configs/nginx'
-let g:netrw_dirhist_2='/home/lukepomfrey/Projects/environments/all/src/memcache-control/memcache_control/configs/supervisord'
-let g:netrw_dirhist_3='/home/lukepomfrey/.gem/ruby/1.8/gems/grb-0.4.1/lib'
