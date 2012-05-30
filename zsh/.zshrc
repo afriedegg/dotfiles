@@ -41,7 +41,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 walkup() {
     if [ -f $1 ]; then
-        echo $1
+        echo '.'
         return 0
     fi
     d=$(dirname $PWD)
