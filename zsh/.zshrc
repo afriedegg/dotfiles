@@ -1,5 +1,7 @@
 eval `dircolors ~/.dir_colors`
 
+xrdb -merge ~/.Xdefaults
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 

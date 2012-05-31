@@ -1,1 +1,2 @@
-xrdb -merge ~/.Xdefaults
+#!/bin/sh
+exec gnome-session
