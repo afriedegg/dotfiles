@@ -1,6 +1,8 @@
 eval `dircolors ~/.dir_colors`
 
-xrdb -merge ~/.Xdefaults 2>&1 > /dev/null
+if [ -f ~/.Xdefaults ]; then
+    xrdb -merge ~/.Xdefaults 2>&1 > /dev/null
+fi
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -86,4 +88,9 @@ act () {
         fi
         source "$virtualenv"/bin/activate
     fi
+}
+
+internal_ips () {
+    echo $(ifconfig | grep "inet " | awk '{ print $2 }')
+    return 0
 }
