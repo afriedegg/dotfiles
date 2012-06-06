@@ -94,3 +94,13 @@ internal_ips () {
     echo $(ifconfig | grep "inet " | awk '{ print $2 }')
     return 0
 }
+
+alias my_ips="internal_ips"
+
+my_ip () {
+    echo $(internal_ips | awk '{ print $1 }' | sed -e 's/addr://g')
+    return 0
+}
+
+alias runserver="python ./manage.py runserver"
+alias shell_plus="python ./manage.py shell_plus"
