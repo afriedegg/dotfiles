@@ -3,6 +3,7 @@ import glob
 import os
 import shutil
 import logging
+import re
 
 import jinja2
 from fabric.api import local
@@ -121,12 +122,29 @@ def _install_file(method, src, dst, *args, **kwargs):
                 exit(1)
 
 
-def install():
+def install(section=None):
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
     config.read(os.path.join(basedir, 'dotfiles.conf'))
 
-    for section in config.sections():
+    sections = []
+    if section is not None:
+        for s in re.split('[\s,]+', section):
+            if s in config.sections():
+                sections.append(s)
+            else:
+                found = False
+                for type in ['files', 'installer']:
+                    if ':'.join(type, s) in config.sections():
+                        sections.append(':'.join(type, s))
+                        found = True
+                        break
+                if not found:
+                    raise Exception('Could not find section {0}'.format(s))
+    else:
+        sections = config.sections()
+
+    for section in sections:
         if ':' in section:
             stype, section_name = section.split(':')
         else:
