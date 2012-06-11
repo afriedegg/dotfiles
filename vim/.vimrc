@@ -103,6 +103,11 @@ if &t_Co > 2 || has("gui_running")
     colorscheme solarized
 endif
 
+" gnome-terminal doesn't properly report it's color capabilities
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
+
 set esckeys
 map <Esc>[H  <Home>
 map <Esc>[F  <End>
