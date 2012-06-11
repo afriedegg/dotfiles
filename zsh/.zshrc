@@ -43,6 +43,10 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
+if [ -n "$DISPLAY" -a "$TERM"=="xterm" ]; then
+    export TERM=xterm-256color
+fi
+
 walkup() {
     if [ -f $1 ]; then
         echo '.'
