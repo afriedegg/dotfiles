@@ -1,8 +1,8 @@
-eval `dircolors ~/.dir_colors`
-
-if [ -f ~/.Xdefaults ]; then
-    xrdb -merge ~/.Xdefaults 2>&1 > /dev/null
+if [ -n "$DISPLAY" -a "$TERM"=="xterm" ]; then
+    export TERM=xterm-256color
 fi
+
+eval `dircolors ~/.dir_colors`
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -42,10 +42,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-
-if [ -n "$DISPLAY" -a "$TERM"=="xterm" ]; then
-    export TERM=xterm-256color
-fi
 
 walkup() {
     if [ -f $1 ]; then
