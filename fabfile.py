@@ -135,8 +135,8 @@ def install(section=None):
             else:
                 found = False
                 for type in ['files', 'installer']:
-                    if ':'.join(type, s) in config.sections():
-                        sections.append(':'.join(type, s))
+                    if ':'.join([type, s]) in config.sections():
+                        sections.append(':'.join([type, s]))
                         found = True
                         break
                 if not found:
