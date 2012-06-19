@@ -7,4 +7,6 @@
     autocomplete = 1
 [github]
 	user = lpomfrey
-	token = {{ github_token }}
+    token = {{ github_token }}
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
