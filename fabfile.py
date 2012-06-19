@@ -250,3 +250,10 @@ def install(section=None):
         else:
             logging.error('%s? WTF am I meant to do with that?' % section)
         logging.info('Installed %s...' % section)
+
+
+def update_submodules():
+    local('git submodule foreach --recursive '\
+          '"(git checkout master; git pull)&"')
+    local('git submodule update --recursive')
+    local('git submodule status --recursive')
