@@ -1,0 +1,4 @@
+cd ~/.vim/bundle/command-t
+git pull && git checkout master
+bundle install --path=~/.gem/ruby/1.8/
+rake make
