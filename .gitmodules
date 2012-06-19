@@ -7,3 +7,6 @@
 [submodule "vim/.vim/bundle/vim-css3-syntax"]
 	path = vim/.vim/bundle/vim-css3-syntax
 	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule "vim/.vim/bundle/vim-flake8"]
+	path = vim/.vim/bundle/vim-flake8
+	url = git://github.com/nvie/vim-flake8.git
