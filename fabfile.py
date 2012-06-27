@@ -6,7 +6,7 @@ import logging
 import re
 
 import jinja2
-from fabric.api import local
+from fabric.api import local, lcd
 
 
 logging.basicConfig(level=logging.INFO)
@@ -257,3 +257,11 @@ def update_submodules():
           '"(git checkout master; git pull)&"')
     local('git submodule update --recursive')
     local('git submodule status --recursive')
+
+
+def make_command_t(update=False):
+    if update:
+        local('git submodule update --recursive vim/.vim/bundle/command-t/')
+    with lcd('vim/.vim/bundle/command-t/ruby/command-t/'):
+        local('ruby extconf.rb')
+        local('make && rake make')
