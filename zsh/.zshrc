@@ -2,6 +2,10 @@ if [ -n "$DISPLAY" -a "$TERM"=="xterm" ]; then
     export TERM=xterm-256color
 fi
 
+if [ -n "$DISPLAY" -a -f ~/.xsession ]; then
+    . ~/.xsession
+fi
+
 eval `dircolors ~/.dir_colors`
 
 # Path to your oh-my-zsh configuration.
