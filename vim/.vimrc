@@ -10,6 +10,11 @@
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
 
+" Source a global configuration file if available
+if filereadable("/etc/vim/vimrc.local")
+    source /etc/vim/vimrc.local
+endif
+
 call pathogen#infect()
 
 " Uncomment the next line to make Vim more Vi-compatible
@@ -25,67 +30,50 @@ set nocompatible	" Use Vim defaults (much better!)
 "set ignorecase     " Do case insensitive matching
 "set smartcase      " Do smart case matching
 "set incsearch      " Incremental search
+"set gdefault   " apply sibstitutions to all lines by default
 "set autowrite      " Automatically save before commands like :next and :make
 "set hidden             " Hide buffers when they are abandoned
 set mouse=a        " Enable mouse usage (all modes)
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-    source /etc/vim/vimrc.local
-endif
-
-
-if v:lang =~ "^ko"
-    set fileencodings=euc-kr
-    set guifontset=-*-*-medium-r-normal--16-*-*-*-*-*-*-*
-elseif v:lang =~ "^ja_JP"
-    set fileencodings=euc-jp
-    set guifontset=-misc-fixed-medium-r-normal--14-*-*-*-*-*-*-*
-elseif v:lang =~ "^zh_TW"
-    set fileencodings=big5
-    set guifontset=-sony-fixed-medium-r-normal--16-150-75-75-c-80-iso8859-1,-taipei-fixed-medium-r-normal--16-150-75-75-c-160-big5-0
-elseif v:lang =~ "^zh_CN"
-    set fileencodings=gb2312
-    set guifontset=*-r-*
-endif
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-    set fileencodings=utf-8,latin1
-endif
-
-"if has("multi_byte")
-"	set encoding=utf-8
-"	setglobal fileencoding=utf-8
-"	set bomb
-"	set termencoding=utf-8
-"endif
-
-" Indent-y type stuff
+set encoding=utf-8
 set autoindent			" always set autoindenting on
 set expandtab
 set tabstop=4
 set softtabstop=4
 set smarttab
 set shiftwidth=4
-
-" Other edit-y insert-y stuff
 set bs=2		" allow backspacing over everything in insert mode
 set foldmethod=syntax	" fold by syntax
 set foldlevel=999	" open all folds
-
 "set backup		" keep a backup file
-set viminfo='20,\"50	" read/write a .viminfo file, don't store more
-" than 50 lines of registers
+set viminfo='20,\"50	" read/write a .viminfo file, don't store more 
+                        " than 50 lines of registers
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
+"set number
+set relativenumber
+set undofile
+set esckeys
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" UI type settings
+set visualbell
 set colorcolumn=80
 highlight ColorColumn guibg=#cccccc ctermbg=darkgray
-set number
 highlight Folded ctermfg=6 ctermbg=0
+
+"nnoremap / /\v " use python/perl style regex
+"vnoremap / /\v
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
+map <Esc>[H  <Home>
+map <Esc>[F  <End>
+map <F4> <Esc>:%s/\s\+$//g<CR>
+map! <F2> <ESC>:set paste<CR>a
+map! <F3> <ESC>:set nopaste<CR>a
+map <F2> <Esc>:set paste<CR>i
+map <F3> <Esc>:set nopaste<CR>i
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -108,14 +96,6 @@ if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
 
-set esckeys
-map <Esc>[H  <Home>
-map <Esc>[F  <End>
-map <F4> <Esc>:%s/\s\+$//g<CR>
-map! <F2> <ESC>:set paste<CR>a
-map! <F3> <ESC>:set nopaste<CR>a
-map <F2> <Esc>:set paste<CR>i
-map <F3> <Esc>:set nopaste<CR>i
 
 if has("autocmd")
     " Uncomment the following to have Vim jump to the last position when
