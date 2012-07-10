@@ -51,7 +51,7 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 "set number
 set relativenumber
-set undofile
+"set undofile
 set esckeys
 
 " Don't use Ex mode, use Q for formatting
