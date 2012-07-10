@@ -57,7 +57,7 @@ set esckeys
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-set visualbell
+"set visualbell
 set colorcolumn=80
 highlight ColorColumn guibg=#cccccc ctermbg=darkgray
 highlight Folded ctermfg=6 ctermbg=0
