@@ -68,8 +68,8 @@ set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 
-" Do case insensitive matching
-set ignorecase
+" No case insensitive matching
+set noignorecase
 
 " Turn of smart case matching
 set nosmartcase
