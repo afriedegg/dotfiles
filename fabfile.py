@@ -253,10 +253,12 @@ def install(section=None):
 
 
 def update_submodules():
+    local('git submodule init')
     local('git submodule foreach --recursive '\
           '"(git checkout master; git pull)&"')
     local('git submodule update --recursive')
     local('git submodule status --recursive')
+    local('git submodule')
 
 
 def make_command_t(update=False):
