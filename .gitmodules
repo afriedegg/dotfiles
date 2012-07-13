@@ -22,3 +22,12 @@
 [submodule "vim/.vim/bundle/vim-surround"]
 	path = vim/.vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule "solarized/solarized"]
+	path = solarized/solarized
+	url = git://github.com/altercation/solarized.git
+[submodule "solarized/gnome-terminal-colors-solarized"]
+	path = solarized/gnome-terminal-colors-solarized
+	url = git://github.com/sigurdga/gnome-terminal-colors-solarized
+[submodule "solarized/dircolors-solarized"]
+	path = solarized/dircolors-solarized
+	url = git://github.com/huyz/dircolors-solarized.git

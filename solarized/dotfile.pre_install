@@ -1,31 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -d ~/solarized ]; then
-    ~/solarized
-    git pull
-else
-    cd ~
-    git clone git://github.com/altercation/solarized.git ~/solarized
-fi
-
-
-if [ -d ~/gnome-terminal-colors-solarized ]; then
-    ~/gnome-terminal-colors-solarized
-    git pull
-else
-    cd ~
-    git clone git://github.com/sigurdga/gnome-terminal-colors-solarized \
-        ~/gnome-terminal-colors-solarized
-fi
-
-~/gnome-terminal-colors-solarized/install.sh
-
-if [ -d ~/dircolors-solarized ]; then
-    ~/dircolors-solarized
-    git pull
-else
-    cd ~
-    git clone git://github.com/huyz/dircolors-solarized.git ~/dircolors-solarized
-fi
-cp ~/dircolors-solarized/dircolors.ansi-light ~/.dir_colors
+./solarized/gnome-terminal-colors-solarized/install.sh
+ln -s ./solarized/dircolors-solarized/dircolors.ansi-light ~/.dir_colors
 eval `dircolors ~/.dir_colors`
