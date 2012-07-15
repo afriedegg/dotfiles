@@ -109,3 +109,5 @@ my_ip () {
 alias runserver="python ./manage.py runserver"
 alias shell_plus="python ./manage.py shell_plus"
 alias collectstatic="python ./manage.py collectstatic --noinput"
+
+alias :q="exit"
