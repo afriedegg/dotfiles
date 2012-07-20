@@ -6,7 +6,7 @@ import logging
 import re
 
 import jinja2
-from fabric.api import local, lcd
+from fabric.api import local, lcd, settings
 
 
 logging.basicConfig(level=logging.INFO)
@@ -26,9 +26,9 @@ def _get_template_context(*args):
     for var in args:
         confirmed = False
         while not confirmed:
-            context[var] = raw_input('Enter %s :\t' % var)
-            answer = raw_input('Got %s. Is this correct? [Yn]\t' \
-                                % context[var])
+            context[var] = raw_input('Enter {0} :\t'.format(var))
+            answer = raw_input('Got {0}. Is this correct? [Yn]\t'\
+                                .format(context[var]))
             if not answer or answer.lower().startswith('y'):
                 confirmed = True
     return context
@@ -36,12 +36,12 @@ def _get_template_context(*args):
 
 def _create_backup(dst):
     if os.path.exists(dst):
-        backup = backup_orig = '%s.backup' % dst.rstrip('/')
-        logging.info('Creating backup of %s at %s' % (dst, backup))
+        backup = backup_orig = '{0}.backup'.format(dst.rstrip('/'))
+        logging.info('Creating backup of {0} at {1}'.format(dst, backup))
 
         i = 1
         while os.path.exists(backup):
-            backup = '%s.%s' % (backup_orig, i)
+            backup = '{0}.{1}'.format(backup_orig, i)
             i += 1
 
         try:
@@ -58,16 +58,16 @@ def _install_file(method, src, dst, *args, **kwargs):
     backup = False
     failure = False
     if os.path.exists(dst):
-        action = raw_input('%s exists? [B]ackup [o]verwrite ' \
-                           '[c]ancel [a]bort\t' % dst)
+        action = raw_input('{0} exists? [B]ackup [o]verwrite ' \
+                           '[c]ancel [a]bort\t'.format(dst))
         if action.lower().startswith('o'):
-            logging.info('Overwriting %s with %s.' % (dst, src))
+            logging.info('Overwriting {0} with {1}.'.format(dst, src))
             try:
                 os.remove(dst.rstrip('/'))
             except:
                 os.rmdir(dst.rstrip('/'))
         elif action.lower().startswith('c'):
-            logging.info('Not installing %s.' % src)
+            logging.info('Not installing {0}.'.format(src))
             return
         elif action.lower().startswith('a'):
             logging.info('Aborting...')
@@ -86,39 +86,39 @@ def _install_file(method, src, dst, *args, **kwargs):
         context = _get_template_context(*context)
         content = _render_template(src, context)
         try:
-            logging.debug('Writing template to %s' % dst)
+            logging.debug('Writing template to {0}'.format(dst))
             with open(dst, 'w') as f:
                 f.write(content)
         except:
             failure = True
     elif method == 'link':
         try:
-            logging.debug('Linking %s to %s' \
-                            % (src.rstrip('/'), dst.rstrip('/')))
+            logging.debug('Linking {0} to {1}'\
+                          .format(src.rstrip('/'), dst.rstrip('/')))
             os.symlink(src.rstrip('/'), dst.rstrip('/'))
         except:
             failure = True
     elif method == 'copy':
         try:
-            logging.debug('Copying %s to %s' \
-                            % (src.rstrip('/'), dst.rstrip('/')))
+            logging.debug('Copying {0} to {1}'\
+                          .format(src.rstrip('/'), dst.rstrip('/')))
             shutil.copy2(src, dst)
         except:
             failure = True
     else:
-        logging.info('%(a)s? %(a)s? WTF is %(a)s?' % {'a': method})
+        logging.info('{0}? {0}? WTF is {0}?'.format(method))
     if failure:
         if not backup:
-            logging.error('Failed to write %s' % src)
+            logging.error('Failed to write {0}'.format(src))
         else:
-            logging.info('Failed to write %s, attempting to restore ' \
-                         'from backup...' % src)
+            logging.info('Failed to write {0}, attempting to restore ' \
+                         'from backup...'.format(src))
             try:
                 os.rename(backup, dst)
                 logging.info('Restored')
             except:
-                logging.error('Failed to restore backup %s. ' \
-                              'Aborting...' % backup)
+                logging.error('Failed to restore backup {0}. ' \
+                              'Aborting...'.format(backup))
                 exit(1)
 
 
@@ -150,7 +150,7 @@ def install(section=None, *args, **kwargs):
         else:
             stype, section_name = 'file', section
 
-        install = raw_input('Install %s? [Yn]\t' % section_name)
+        install = raw_input('Install {0}? [Yn]\t'.format(section_name))
         if install and not install.lower().startswith('y'):
             continue
         if stype == 'files':
@@ -234,22 +234,36 @@ def install(section=None, *args, **kwargs):
                 installs = []
 
             try:
-                args = config.get(section, 'args')
+                cargs = config.get(section, 'args')
             except ConfigParser.NoOptionError:
-                args = ''
+                cargs = ''
+            try:
+                upgrade_args = config.get(section, 'upgrade_args')
+            except ConfigParser.NoOptionError:
+                upgrade_args = ''
 
             try:
                 sudo = config.getboolean(section, 'sudo')
             except ConfigParser.NoOptionError:
                 sudo = False
             for install in installs:
-                command = '%s %s %s' % (section_name, args, install)
+
+                if 'upgrade' in args and upgrade_args:
+                    cargs = upgrade_args
+                command = '{0} {1} {2}'.format(section_name, cargs, install)
                 if sudo:
-                    command = 'sudo %s' % command
-                local(command)
+                    command = 'sudo {0}'.format(command)
+                with settings(warn_only=True):
+                    try:
+                        local(command)
+                    except (Exception, EnvironmentError) as e:
+                        print 'Failed to complete: {0}\nException was:\n{1}'\
+                              .format(command, e)
+
         else:
-            logging.error('%s? WTF am I meant to do with that?' % section)
-        logging.info('Installed %s...' % section)
+            logging.error('{0}? WTF am I meant to do with that?'\
+                          .format(section))
+        logging.info('Installed {0}...'.format(section))
 
 
 def update_submodules():
