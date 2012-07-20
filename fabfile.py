@@ -259,11 +259,7 @@ def install(section=None, *args, **kwargs):
                 if sudo:
                     command = 'sudo {0}'.format(command)
                 with settings(warn_only=True):
-                    try:
-                        local(command)
-                    except (Exception, EnvironmentError) as e:
-                        print 'Failed to complete: {0}\nException was:\n{1}'\
-                              .format(command, e)
+                    local(command)
 
         else:
             logging.error('{0}? WTF am I meant to do with that?'\
