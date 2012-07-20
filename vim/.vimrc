@@ -130,7 +130,8 @@ set nobackup
 set noswapfile
 "set undofile
 "set nowb
-set viminfo^=%
+"set viminfo^=%
+"set viminfo='100,:200,<50,s10,h 
 
 set esckeys
 
@@ -196,9 +197,9 @@ endtry
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -245,10 +246,8 @@ if &t_Co > 2 || has("gui_running")
     colorscheme solarized
 endif
 
-if !exists("autocommands_loaded")
-    let autocommands_loaded = 1
-    autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
-endif
+autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
+autocmd BufRead *.py set filetype=python
 
 " a better htmldjango detection
 augroup filetypedetect
