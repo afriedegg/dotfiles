@@ -122,7 +122,7 @@ def _install_file(method, src, dst, *args, **kwargs):
                 exit(1)
 
 
-def install(section=None):
+def install(section=None, *args, **kwargs):
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
     config.read(os.path.join(basedir, 'dotfiles.conf'))
