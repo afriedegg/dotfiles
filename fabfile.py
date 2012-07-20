@@ -6,7 +6,7 @@ import logging
 import re
 
 import jinja2
-from fabric.api import local, lcd, settings
+from fabric.api import lcd, local, settings, task
 
 
 logging.basicConfig(level=logging.INFO)
@@ -121,7 +121,7 @@ def _install_file(method, src, dst, *args, **kwargs):
                               'Aborting...'.format(backup))
                 exit(1)
 
-
+@task
 def install(section=None, *args, **kwargs):
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
@@ -265,7 +265,7 @@ def install(section=None, *args, **kwargs):
                           .format(section))
         logging.info('Installed {0}...'.format(section))
 
-
+@task
 def update_submodules():
     local('git submodule init')
     local('git submodule foreach --recursive '\
@@ -274,7 +274,7 @@ def update_submodules():
     local('git submodule status --recursive')
     local('git submodule')
 
-
+@task
 def make_command_t(update=False):
     if update:
         local('git submodule update --recursive vim/.vim/bundle/command-t/')
