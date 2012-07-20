@@ -123,6 +123,11 @@ def _install_file(method, src, dst, *args, **kwargs):
 
 @task
 def install(section=None, *args, **kwargs):
+    '''
+    Install dotfile sections.
+
+    Optionally pass in the name of a section to only install that section.
+    '''
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
     config.read(os.path.join(basedir, 'dotfiles.conf'))
@@ -267,6 +272,9 @@ def install(section=None, *args, **kwargs):
 
 @task
 def update_submodules():
+    '''
+    Update all git submodules in tree.
+    '''
     local('git submodule init')
     local('git submodule foreach --recursive '\
           '"(git checkout master; git pull)&"')
@@ -276,6 +284,12 @@ def update_submodules():
 
 @task
 def make_command_t(update=False):
+    '''
+    Builds the command_t vim extension.
+
+    Takes an optional update argument which, if given, will perform an
+    update of the command-t source tree before building.
+    '''
     if update:
         local('git submodule update --recursive vim/.vim/bundle/command-t/')
     with lcd('vim/.vim/bundle/command-t/ruby/command-t/'):
