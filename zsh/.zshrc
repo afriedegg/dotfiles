@@ -112,3 +112,5 @@ alias collectstatic="python ./manage.py collectstatic --noinput"
 alias profileserver="python ./manage.py runprofileserver --kcachegrind --prof-path=${HOME}/prof/"
 
 alias :q="exit"
+
+compctl -g '~/.teamocil/*(:t:r)' teamocil
