@@ -115,3 +115,7 @@ alias profileserver="python ./manage.py runprofileserver --kcachegrind --prof-pa
 alias :q="exit"
 
 compctl -g '~/.teamocil/*(:t:r)' teamocil
+
+if [ -f ~/.zshrc.local ] ; then
+    source ~/.zshrc.local
+fi
