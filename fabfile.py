@@ -128,6 +128,8 @@ def install(section=None, *args, **kwargs):
 
     Optionally pass in the name of a section to only install that section.
     '''
+    update_submodules()
+
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
     config.read(os.path.join(basedir, 'dotfiles.conf'))
