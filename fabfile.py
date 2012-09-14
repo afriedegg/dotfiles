@@ -65,6 +65,12 @@ def _install_file(method, src, dst, *args, **kwargs):
             try:
                 os.remove(dst.rstrip('/'))
             except:
+                for f in glob.glob(os.path.join(dst, '*')):
+                    logging.info('Removing {0}'.format(f))
+                    try:
+                        os.remove(f)
+                    except:
+                        pass
                 os.rmdir(dst.rstrip('/'))
         elif action.lower().startswith('c'):
             logging.info('Not installing {0}.'.format(src))
