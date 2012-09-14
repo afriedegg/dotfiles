@@ -1,5 +1,0 @@
-#!/bin/sh
-
-aptitude search "~izsh" || aptitude install zsh
-
-cp -r zsh/custom zsh/.oh-my-zsh/
