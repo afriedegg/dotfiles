@@ -121,6 +121,7 @@ def _install_file(method, src, dst, *args, **kwargs):
                               'Aborting...'.format(backup))
                 exit(1)
 
+
 @task
 def install(section=None, *args, **kwargs):
     '''
@@ -206,14 +207,22 @@ def install(section=None, *args, **kwargs):
             for link in links:
                 if not (link.endswith('dotfile.preinstall') \
                         or link.endswith('dotfile.postinstall')):
-                    dst = link.lstrip(sectiondir).lstrip('/')
+                    if len(link.split('->')) == 2:
+                        link, dst = link.split('->')
+                    else:
+                        dst = link
+                    dst = dst.lstrip(sectiondir).lstrip('/')
                     dst = os.path.expanduser(os.path.join('~', dst))
                     _install_file('link', link, dst)
 
             for copy in copies:
                 if not (copy.endswith('dotfile.preinstall') \
                         or copy.endswith('dotfile.postinstall')):
-                    dst = copy.lstrip(sectiondir).lstrip('/')
+                    if len(copy.split('->')) == 2:
+                        copy, dst = copy.split('->')
+                    else:
+                        dst = copy
+                    dst = dst.lstrip(sectiondir).lstrip('/')
                     dst = os.path.expanduser(os.path.join('~', dst))
                     _install_file('copy', copy, dst)
 
@@ -268,6 +277,7 @@ def install(section=None, *args, **kwargs):
                           .format(section))
         logging.info('Installed {0}...'.format(section))
 
+
 @task
 def update_submodules():
     '''
@@ -279,6 +289,7 @@ def update_submodules():
     local('git submodule update --recursive')
     local('git submodule status --recursive')
     local('git submodule')
+
 
 @task
 def make_command_t(update=False):
