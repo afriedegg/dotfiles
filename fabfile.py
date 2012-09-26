@@ -270,7 +270,7 @@ def install(section=None, submodules=False, *args, **kwargs):
             except ConfigParser.NoOptionError:
                 sudo = False
             try:
-                multi = config.getboolean(section, 'multiple_installs')
+                multi = config.getboolean(section, 'multiple_install')
             except ConfigParser.NoOptionError:
                 multi = False
             if 'upgrade' in args and upgrade_args:
