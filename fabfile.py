@@ -129,13 +129,14 @@ def _install_file(method, src, dst, *args, **kwargs):
 
 
 @task
-def install(section=None, *args, **kwargs):
+def install(section=None, submodules=False, *args, **kwargs):
     '''
     Install dotfile sections.
 
     Optionally pass in the name of a section to only install that section.
     '''
-    update_submodules()
+    if submodules:
+        update_submodules()
 
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
@@ -268,15 +269,27 @@ def install(section=None, *args, **kwargs):
                 sudo = config.getboolean(section, 'sudo')
             except ConfigParser.NoOptionError:
                 sudo = False
-            for install in installs:
-
-                if 'upgrade' in args and upgrade_args:
-                    cargs = upgrade_args
+            try:
+                multi = config.getboolean(section, 'multiple_installs')
+            except ConfigParser.NoOptionError:
+                multi = False
+            if 'upgrade' in args and upgrade_args:
+                cargs = upgrade_args
+            if multi:
+                install = ' '.join(installs)
                 command = '{0} {1} {2}'.format(section_name, cargs, install)
                 if sudo:
                     command = 'sudo {0}'.format(command)
                 with settings(warn_only=True):
                     local(command)
+            else:
+                for install in installs:
+                    command = '{0} {1} {2}'\
+                              .format(section_name, cargs, install)
+                    if sudo:
+                        command = 'sudo {0}'.format(command)
+                    with settings(warn_only=True):
+                        local(command)
 
         else:
             logging.error('{0}? WTF am I meant to do with that?'\
