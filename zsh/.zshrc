@@ -116,6 +116,10 @@ alias :q="exit"
 
 compctl -g '~/.teamocil/*(:t:r)' teamocil
 
+if [ -f ~/.local/bin/virtualenvwrapper.sh ] ; then
+    source ~/.local/bin/virtualenvwrapper.sh
+fi
+
 if [ -f ~/.zshrc.local ] ; then
     source ~/.zshrc.local
 fi
