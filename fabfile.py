@@ -27,7 +27,7 @@ def _get_template_context(*args):
         confirmed = False
         while not confirmed:
             context[var] = raw_input('Enter {0} :\t'.format(var))
-            answer = raw_input('Got {0}. Is this correct? [Yn]\t'\
+            answer = raw_input('Got {0}. Is this correct? [Yn]\t'
                                 .format(context[var]))
             if not answer or answer.lower().startswith('y'):
                 confirmed = True
@@ -58,20 +58,15 @@ def _install_file(method, src, dst, *args, **kwargs):
     backup = False
     failure = False
     if os.path.exists(dst):
-        action = raw_input('{0} exists? [B]ackup [o]verwrite ' \
+        action = raw_input('{0} exists? [B]ackup [o]verwrite '
                            '[c]ancel [a]bort\t'.format(dst))
         if action.lower().startswith('o'):
             logging.info('Overwriting {0} with {1}.'.format(dst, src))
+            logging.info('Removing {0}'.format(dst))
             try:
-                os.remove(dst.rstrip('/'))
-            except:
-                for f in glob.glob(os.path.join(dst, '*')):
-                    logging.info('Removing {0}'.format(f))
-                    try:
-                        os.remove(f)
-                    except:
-                        pass
-                os.rmdir(dst.rstrip('/'))
+                os.remove(dst)
+            except OSError:
+                shutil.rmtree(dst)
         elif action.lower().startswith('c'):
             logging.info('Not installing {0}.'.format(src))
             return
@@ -99,14 +94,14 @@ def _install_file(method, src, dst, *args, **kwargs):
             failure = True
     elif method == 'link':
         try:
-            logging.debug('Linking {0} to {1}'\
+            logging.debug('Linking {0} to {1}'
                           .format(src.rstrip('/'), dst.rstrip('/')))
             os.symlink(src.rstrip('/'), dst.rstrip('/'))
         except:
             failure = True
     elif method == 'copy':
         try:
-            logging.debug('Copying {0} to {1}'\
+            logging.debug('Copying {0} to {1}'
                           .format(src.rstrip('/'), dst.rstrip('/')))
             shutil.copy2(src, dst)
         except:
@@ -117,13 +112,13 @@ def _install_file(method, src, dst, *args, **kwargs):
         if not backup:
             logging.error('Failed to write {0}'.format(src))
         else:
-            logging.info('Failed to write {0}, attempting to restore ' \
+            logging.info('Failed to write {0}, attempting to restore '
                          'from backup...'.format(src))
             try:
                 os.rename(backup, dst)
                 logging.info('Restored')
             except:
-                logging.error('Failed to restore backup {0}. ' \
+                logging.error('Failed to restore backup {0}. '
                               'Aborting...'.format(backup))
                 exit(1)
 
@@ -170,9 +165,9 @@ def install(section=None, submodules=False, *args, **kwargs):
             continue
         if stype == 'files':
             sectiondir = os.path.join(basedir, section_name).rstrip('/')
-            preinstall = os.path.join(sectiondir, 'dotfile.preinstall')
-            if os.path.exists(preinstall) and os.access(preinstall, os.X_OK):
-                local(preinstall)
+            pre_install = os.path.join(sectiondir, 'dotfile.pre_install')
+            if os.path.exists(pre_install) and os.access(pre_install, os.X_OK):
+                local(pre_install)
 
             try:
                 links = config.get(section, 'link')
@@ -183,7 +178,7 @@ def install(section=None, submodules=False, *args, **kwargs):
                 links = glob.glob(os.path.join(sectiondir, '*'))
                 links.extend(glob.glob(os.path.join(sectiondir, '.*')))
             else:
-                links = [os.path.join(sectiondir, f) \
+                links = [os.path.join(sectiondir, f)
                          for f in links.split(',') if f]
 
             try:
@@ -195,7 +190,7 @@ def install(section=None, submodules=False, *args, **kwargs):
                 copies = glob.glob(os.path.join(sectiondir, '*'))
                 copies.extend(glob.glob(os.path.join(sectiondir, '.*')))
             else:
-                copies = [os.path.join(sectiondir, f) \
+                copies = [os.path.join(sectiondir, f)
                           for f in copies.split(',') if f]
 
             try:
@@ -208,12 +203,12 @@ def install(section=None, submodules=False, *args, **kwargs):
                 templates.extend(glob.glob(os.path.join(sectiondir, '.*')))
             else:
                 templates = \
-                        [os.path.join(sectiondir, f) \
+                        [os.path.join(sectiondir, f)
                          for f in templates.split(',') if f]
 
             for link in links:
-                if not (link.endswith('dotfile.preinstall') \
-                        or link.endswith('dotfile.postinstall')):
+                if not (link.endswith('dotfile.pre_install')
+                        or link.endswith('dotfile.post_install')):
                     if len(link.split('->')) == 2:
                         link, dst = link.split('->')
                     else:
@@ -223,8 +218,8 @@ def install(section=None, submodules=False, *args, **kwargs):
                     _install_file('link', link, dst)
 
             for copy in copies:
-                if not (copy.endswith('dotfile.preinstall') \
-                        or copy.endswith('dotfile.postinstall')):
+                if not (copy.endswith('dotfile.pre_install')
+                        or copy.endswith('dotfile.post_install')):
                     if len(copy.split('->')) == 2:
                         copy, dst = copy.split('->')
                     else:
@@ -234,8 +229,8 @@ def install(section=None, submodules=False, *args, **kwargs):
                     _install_file('copy', copy, dst)
 
             for template in templates:
-                if not (template.endswith('dotfile.preinstall') \
-                        or template.endswith('dotfile.postinstall')):
+                if not (template.endswith('dotfile.pre_install')
+                        or template.endswith('dotfile.post_install')):
                     try:
                         context_vars = config.get(section, 'template_context')
                     except ConfigParser.NoOptionError:
@@ -245,13 +240,14 @@ def install(section=None, submodules=False, *args, **kwargs):
                     dst = os.path.expanduser(os.path.join('~', dst))
                     _install_file('template', template, dst, context_vars)
 
-            postinstall = os.path.join(sectiondir, 'dotfile.postinstall')
-            if os.path.exists(postinstall) and os.access(postinstall, os.X_OK):
-                local(postinstall)
+            post_install = os.path.join(sectiondir, 'dotfile.post_install')
+            if os.path.exists(post_install) \
+            and os.access(post_install, os.X_OK):
+                local(post_install)
         elif stype == 'installer':
             try:
-                installs = [x.strip() for x in \
-                            config.get(section, 'install').split(',') \
+                installs = [x.strip() for x in
+                            config.get(section, 'install').split(',')
                             if x.strip()]
             except ConfigParser.NoOptionError:
                 installs = []
@@ -292,7 +288,7 @@ def install(section=None, submodules=False, *args, **kwargs):
                         local(command)
 
         else:
-            logging.error('{0}? WTF am I meant to do with that?'\
+            logging.error('{0}? WTF am I meant to do with that?'
                           .format(section))
         logging.info('Installed {0}...'.format(section))
 
@@ -303,7 +299,7 @@ def update_submodules():
     Update all git submodules in tree.
     '''
     local('git submodule init')
-    local('git submodule foreach --recursive '\
+    local('git submodule foreach --recursive '
           '"(git checkout master; git pull)&"')
     local('git submodule update --recursive')
     local('git submodule status --recursive')
