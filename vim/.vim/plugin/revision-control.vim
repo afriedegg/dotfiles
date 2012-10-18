@@ -2,9 +2,8 @@
 " in ~/.vim/plugin/ directory.
 
 command! -complete=file -nargs=* Bzr call s:RunShellCommand('bzr '.<q-args>)
-
-" Other VCS tools
-command! -complete=file -nargs=* Git call s:RunShellCommand('git '.<q-args>)
+" We're using fugitive so don't need Git
+"command! -complete=file -nargs=* Git call s:RunShellCommand('git '.<q-args>)
 command! -complete=file -nargs=* Hg call s:RunShellCommand('hg '.<q-args>)
 command! -complete=file -nargs=* Svn call s:RunShellCommand('svn '.<q-args>)
 
