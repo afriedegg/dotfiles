@@ -19,6 +19,7 @@ ZSH_THEME="lpomfrey"
 
 # Example aliases
 alias zshconfig="vi ~/.zshrc"
+alias zshreload=". ~/.zshrc"
 #alias ohmyzsh="vi ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
@@ -39,14 +40,16 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github debian command-not-found python django zshmarks pip fabric history-substring-search heroku)
+plugins=(git github debian command-not-found python django pip fabric supervisor heroku zshmarks history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+# Exports
 export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
+# Functions
 walkup() {
     if [ -f $1 ]; then
         echo '.'
@@ -99,23 +102,25 @@ internal_ips () {
     return 0
 }
 
-alias my_ips="internal_ips"
 
 my_ip () {
     echo $(internal_ips | awk '{ print $1 }' | sed -e 's/addr://g')
     return 0
 }
 
+# Aliases
+alias my_ips="internal_ips"
 alias mng="python ./manage.py"
 alias runserver="python ./manage.py runserver"
 alias shell_plus="python ./manage.py shell_plus"
 alias collectstatic="python ./manage.py collectstatic --noinput"
 alias profileserver="python ./manage.py runprofileserver --kcachegrind --prof-path=${HOME}/prof/"
-
 alias :q="exit"
 
+# Completion
 compctl -g '~/.teamocil/*(:t:r)' teamocil
 
+# Sources
 if [ -f ~/.local/bin/virtualenvwrapper.sh ] ; then
     source ~/.local/bin/virtualenvwrapper.sh
 fi
