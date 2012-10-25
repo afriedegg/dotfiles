@@ -48,7 +48,7 @@ source $ZSH/oh-my-zsh.sh
 # Exports
 export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export VIRTUAL_ENV_DISABLE_PROMPT=true
-export ZSH_THEME_TERM_TITLE_IDLE="%n@%m: ${PWD}"  # Prevent env vars appearing in title
+export ZSH_THEME_TERM_TITLE_IDLE="%n@%m: $(pwd | sed -e "s,^$HOME,~,")"  # Prevent env vars appearing in title
 
 # Functions
 walkup() {
