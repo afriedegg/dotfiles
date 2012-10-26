@@ -128,3 +128,6 @@ fi
 if [ -f ~/.zshrc.local ] ; then
     source ~/.zshrc.local
 fi
+
+bindkey '^[OA' up-line-or-search
+bindkey '^[OB' down-line-or-search
