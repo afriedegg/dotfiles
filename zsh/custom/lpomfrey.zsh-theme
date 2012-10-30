@@ -18,3 +18,5 @@ RPROMPT='$(virtualenv_info)%{$reset_color%}$(git_prompt_info)%{$reset_color%}%{$
 
 ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %d"  # Prevent env vars appearing in title
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%d%<<"
+
+export VIRTUAL_ENV_DISABLE_PROMPT=true
