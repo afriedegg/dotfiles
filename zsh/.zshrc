@@ -116,6 +116,7 @@ alias shell_plus="python ./manage.py shell_plus"
 alias collectstatic="python ./manage.py collectstatic --noinput"
 alias profileserver="python ./manage.py runprofileserver --kcachegrind --prof-path=${HOME}/prof/"
 alias ta="tmux attach -t"
+alias tn="tmux new -s"
 alias :q="exit"
 
 # Completion
