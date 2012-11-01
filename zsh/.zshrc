@@ -121,7 +121,9 @@ alias :q="exit"
 compctl -g '~/.teamocil/*(:t:r)' teamocil
 
 # Sources
-if [ -f ~/.local/bin/virtualenvwrapper.sh ] ; then
+if [ -f ~/.local/bin/virtualenvwrapper_lazy.sh ] ; then
+    source ~/.local/bin/virtualenvwrapper_lazy.sh
+elif [ -f ~/.local/bin/virtualenvwrapper.sh ] ; then
     source ~/.local/bin/virtualenvwrapper.sh
 fi
 
