@@ -40,7 +40,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git github debian command-not-found python django pip fabric supervisor heroku zshmarks history-substring-search zsh-syntax-highlighting)
+plugins=(git github debian command-not-found python django pip fabric supervisor heroku zshmarks zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,7 +118,9 @@ alias profileserver="python ./manage.py runprofileserver --kcachegrind --prof-pa
 alias :q="exit"
 
 # Completion
-compctl -g '~/.teamocil/*(:t:r)' teamocil
+if [[ ${TMUX:+intmux} == "intmux" ]]; then
+    compctl -g '~/.teamocil/*(:t:r)' teamocil
+fi
 
 # Sources
 if [ -f ~/.local/bin/virtualenvwrapper_lazy.sh ] ; then
