@@ -45,6 +45,12 @@
 *pointerColorForeground:S_base1
 *boldMode:false
 
+Xft*dpi:        30 
+Xft*antialias:  true
+Xft*rgba:       rgb
+Xft*hinting:    true
+Xft*hintstyle:  hintslight
+
 !! black dark/light
 *color0: S_base02
 *color8: S_base03
@@ -79,24 +85,25 @@
 
 *customization: -color
 
-Xft*forcePackedFont: true
 xterm*termName:  xterm-256color
-xterm*faceName: xft:Ubuntu Mono,Ubuntu Mono for Powerline
-xterm*faceSize: 10
-xterm*font: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=10:hinting=true
-xterm*imFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=10:hinting=true
-xterm*boldFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold,BoldForPowerline:pixelsize=10:hinting=true
-xterm*italicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Italic,ItalicForPowerline:pixelsize=10:hinting=true
-xterm*bolditalicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold Italic:pixelsize=10:hinting=true
+xterm*faceName: xft:Ubuntu\ Mono\ for\ Powerline
+xterm*faceSize: 11
+xterm*font: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
+xterm*imFont: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
+xterm*boldFont: xft:Ubuntu\ Mono\ for\ Powerline:bold:pixelsize=11:antialias=true:hinting=true
+xterm*italicFont: xft:Ubuntu\ Mono\ for\ Powerline:italic:pixelsize=11:antialias=true:hinting=true
+!!xterm*bolditalicFont: xft:Ubuntu\ Mono\ for\ Powerline:bold italic:pixelsize=11:antialias=true:hinting=true
 xterm*background: S_base03
 
-urxvt*faceName: xft:Ubuntu Mono,Ubuntu Mono for Powerline
-urxvt*faceSize: 9
-urxvt*font: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=9:hinting=true
-urxvt*imFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=9:hinting=true
-urxvt*boldFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold,BoldForPowerline:pixelsize=9:hinting=true
-urxvt*italicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Italic,ItalicForPowerline:pixelsize=9:hinting=true
-urxvt*bolditalicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold Italic:pixelsize=9:hinting=true
+urxvt*termName:  xterm-256color
+urxvt*faceName: xft:Ubuntu\ Mono,Ubuntu\ Mono\ for\ Powerline
+urxvt*faceSize: 11
+urxvt*font: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
+urxvt*imFont: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
+urxvt*boldFont: xft:Ubuntu\ Mono\ for\ Powerline:bold:pixelsize=11:antialias=true:hinting=true
+urxvt*italicFont: xft:Ubuntu\ Mono\ for\ Powerline:italic:pixelsize=11:antialias=true:hinting=true
+!!urxvt*bolditalicFont: xft:Ubuntu\ Mono\ for\ Powerline:bold italic:pixelsize=11:antialias=true:hinting=true
 urxvt*scrollBar: true
 urxvt*scrollBar_right: true
 urxvt*scrollstyle: rxvt
+urxvt*background: S_base03
