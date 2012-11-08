@@ -17,13 +17,13 @@ mute_status_check "left"
 
 # Segments
 
-#declare -A tmux_session_info
-#tmux_session_info+=(["script"]="${segments_path}/tmux_session_info.sh")
-#tmux_session_info+=(["foreground"]="colour234")
-#tmux_session_info+=(["background"]="colour148")
-#tmux_session_info+=(["separator"]="${separator_right_bold}")
-#tmux_session_info+=(["separator_fg"]="default")
-#register_segment "tmux_session_info"
+declare -A tmux_session_info
+tmux_session_info+=(["script"]="${segments_path}/tmux_session_info.sh")
+tmux_session_info+=(["foreground"]="colour234")
+tmux_session_info+=(["background"]="colour148")
+tmux_session_info+=(["separator"]="${separator_right_bold}")
+tmux_session_info+=(["separator_fg"]="default")
+register_segment "tmux_session_info"
 
 declare -A hostname
 hostname+=(["script"]="${segments_path}/hostname.sh")
