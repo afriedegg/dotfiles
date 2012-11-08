@@ -83,20 +83,20 @@ Xft*forcePackedFont: true
 xterm*termName:  xterm-256color
 xterm*faceName: xft:Ubuntu Mono,Ubuntu Mono for Powerline
 xterm*faceSize: 10
-xterm*font: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=14:hinting=true
-xterm*imFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=14:hinting=true
-xterm*boldFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold,BoldForPowerline:pixelsize=14:hinting=true
-xterm*italicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Italic,ItalicForPowerline:pixelsize=14:hinting=true
-xterm*bolditalicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold Italic:pixelsize=14:hinting=true
+xterm*font: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=10:hinting=true
+xterm*imFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=10:hinting=true
+xterm*boldFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold,BoldForPowerline:pixelsize=10:hinting=true
+xterm*italicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Italic,ItalicForPowerline:pixelsize=10:hinting=true
+xterm*bolditalicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold Italic:pixelsize=10:hinting=true
 xterm*background: S_base03
 
 urxvt*faceName: xft:Ubuntu Mono,Ubuntu Mono for Powerline
-urxvt*faceSize: 13
-urxvt*font: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=14:hinting=true
-urxvt*imFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=14:hinting=true
-urxvt*boldFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold,BoldForPowerline:pixelsize=14:hinting=true
-urxvt*italicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Italic,ItalicForPowerline:pixelsize=14:hinting=true
-urxvt*bolditalicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold Italic:pixelsize=14:hinting=true
+urxvt*faceSize: 9
+urxvt*font: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=9:hinting=true
+urxvt*imFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Regular,RegularForPowerline:pixelsize=9:hinting=true
+urxvt*boldFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold,BoldForPowerline:pixelsize=9:hinting=true
+urxvt*italicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Italic,ItalicForPowerline:pixelsize=9:hinting=true
+urxvt*bolditalicFont: xft:Ubuntu Mono,Ubuntu Mono for Powerline:style=Bold Italic:pixelsize=9:hinting=true
 urxvt*scrollBar: true
 urxvt*scrollBar_right: true
 urxvt*scrollstyle: rxvt
