@@ -109,7 +109,7 @@ my_ip () {
 }
 
 serve_dir() {
-    twistd -n web --path . --port ${1:-8000}
+    twistd -n web --path . --port tcp:interface=${2:-127.0.0.1}:port=${1:-8000}
 }
 
 # Aliases
