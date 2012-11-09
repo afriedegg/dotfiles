@@ -108,6 +108,10 @@ my_ip () {
     return 0
 }
 
+serve_dir() {
+    twistd -n web --path . --port ${1:-8000}
+}
+
 # Aliases
 alias my_ips="internal_ips"
 alias mng="python ./manage.py"
