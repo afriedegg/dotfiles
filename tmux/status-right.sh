@@ -19,7 +19,7 @@ mute_status_check "right"
 # Comment/uncomment the register function call to enable or disable a segment.
 
 declare -A pwd
-wan_ip+=(["background"]="green")
+pwd+=(["background"]="green")
 pwd+=(["script"]="${segments_path}/pwd.sh")
 pwd+=(["foreground"]="colour211")
 pwd+=(["background"]="colour89")
@@ -31,7 +31,7 @@ declare -A uptime
 uptime+=(["script"]="${segments_path}/uptime.sh")
 uptime+=(["foreground"]="colour136")
 uptime+=(["background"]="colour240")
-uptime+=(["separator"]="${separator_left_bold}")
+uptime+=(["separator"]=" ${separator_left_bold}") # Space is \u00A0
 register_segment "uptime"
 
 declare -A load
