@@ -1,19 +1,18 @@
 autoload -U colors && colors
 
-function git_repo {
-    gitdir=$(git rev-parse --show-toplevel)
+git_repo() {
     sep="%{$fg_no_bold[magenta]%} on %{$fg[yellow]%}"
-    if [ -n $gitdir ]; then
-        echo "$(basename ${gitdir})${sep}"
-    fi
+    [ $(git rev-parse --show-toplevel 2> /dev/null) ] || return
+    repo="$(basename $(git rev-parse --show-toplevel 2> /dev/null))${sep}"
+    echo "${repo}"
 }
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_no_bold[magenta]%}git%{$fg_no_bold[magenta]%}:(%{$fg_no_bold[yellow]%}$(git_repo)"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_no_bold[magenta]%}git%{$fg_no_bold[magenta]%}:(%{$fg_no_bold[yellow]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_no_bold[magenta]%}) %{$fg_no_bold[red]%}✗%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_no_bold[magenta]%}) %{$fg_no_bold[green]%}✔%{$reset_color%}"
 
-function virtualenv_info {
+virtualenv_info() {
     [ $VIRTUAL_ENV ] || return
     echo "$VENV_PROMPT_BEFORE$(basename $VIRTUAL_ENV)$VENV_PROMPT_AFTER"
 }
