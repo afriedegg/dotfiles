@@ -125,6 +125,13 @@ alias tna="tmux new -t"
 alias tsw="tmux switch -t"
 alias :q="exit"
 
+# Disable autocorrect
+if [ -f ~/.zsh_nocorrect ]; then
+    while read -r COMMAND; do
+        alias $COMMAND="nocorrect $COMMAND"
+    done < ~/.zsh_nocorrect
+fi
+
 # Completion
 if [[ ${TMUX:+intmux} == "intmux" ]]; then
     compctl -g '~/.teamocil/*(:t:r)' teamocil
