@@ -395,3 +395,7 @@ endfunction
 let g:tex_flavor='latex'
 
 let g:Powerline_symbols = 'fancy'
+
+" vim-jedi
+let g:jedi#popup_on_dot = 0
+let g:jedi#show_function_definition = "0"
