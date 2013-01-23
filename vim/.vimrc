@@ -402,3 +402,6 @@ let g:jedi#show_function_definition = "0"
 
 " Auto-wrap git commit lines
 au FileType gitcommit set tw=72
+
+"https://github.com/gmarik/vundle.git
+python from powerline.bindings.vim import source_plugin; source_plugin()

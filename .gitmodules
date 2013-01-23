@@ -76,3 +76,9 @@
 [submodule "vim/.vim/bundle/vim-jedi"]
 	path = vim/.vim/bundle/vim-jedi
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "vim/.vim/bundle/powerline"]
+	path = vim/.vim/bundle/powerline
+	url = https://github.com/Lokaltog/powerline.git
+[submodule "vim/.vim/bundle/vundle"]
+	path = vim/.vim/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
