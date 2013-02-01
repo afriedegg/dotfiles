@@ -279,11 +279,8 @@ vnoremap <tab> %
 map <Esc>[H  <Home>
 map <Esc>[F  <End>
 map <F4> <Esc>:%s/\s\+$//g<CR>
-map! <F2> <ESC>:set paste<CR>a
-map! <F3> <ESC>:set nopaste<CR>a
-map <F2> <Esc>:set paste<CR>i
-map <F3> <Esc>:set nopaste<CR>i
 "nmap <leader>w :w!<cr>
+set pastetoggle=<F2>
 
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
