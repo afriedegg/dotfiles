@@ -402,3 +402,4 @@ au FileType gitcommit set tw=72
 
 "https://github.com/gmarik/vundle.git
 python from powerline.bindings.vim import source_plugin; source_plugin()
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
