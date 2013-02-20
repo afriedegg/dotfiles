@@ -57,6 +57,10 @@ def _create_backup(dst):
 def _install_file(method, src, dst, *args, **kwargs):
     backup = False
     failure = False
+    dirname = os.path.dirname(dst)
+    if not os.path.isdir(dirname):
+        logging.info('Creating directory: {0}'.format(dirname))
+        os.makedirs(dirname)
     if os.path.exists(dst):
         action = raw_input('{0} exists? [B]ackup [o]verwrite '
                            '[c]ancel [a]bort\t'.format(dst))
