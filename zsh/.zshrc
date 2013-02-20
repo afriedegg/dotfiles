@@ -140,8 +140,12 @@ fi
 # Sources
 if [ -f ~/.local/bin/virtualenvwrapper_lazy.sh ] ; then
     source ~/.local/bin/virtualenvwrapper_lazy.sh
+elif [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ] ; then
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
 elif [ -f ~/.local/bin/virtualenvwrapper.sh ] ; then
     source ~/.local/bin/virtualenvwrapper.sh
+elif [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 if [ -f ~/.zshrc.local ] ; then
