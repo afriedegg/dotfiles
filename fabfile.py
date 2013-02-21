@@ -308,18 +308,3 @@ def update_submodules():
     local('git submodule update --recursive')
     local('git submodule status --recursive')
     local('git submodule')
-
-
-@task
-def make_command_t(update=False):
-    '''
-    Builds the command_t vim extension.
-
-    Takes an optional update argument which, if given, will perform an
-    update of the command-t source tree before building.
-    '''
-    if update:
-        local('git submodule update --recursive vim/.vim/bundle/command-t/')
-    with lcd('vim/.vim/bundle/command-t/ruby/command-t/'):
-        local('ruby extconf.rb')
-        local('make && rake make')
