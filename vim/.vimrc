@@ -66,7 +66,7 @@ set tm=500
 set wildmenu
 
 " Ignore compiled files
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*.so,*.sw[op],*.py[oc],*~
 
 " No case insensitive matching
 set noignorecase
@@ -402,3 +402,8 @@ au FileType gitcommit set tw=72
 
 "https://github.com/gmarik/vundle.git
 set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+
+" CtrlP options
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
