@@ -17,6 +17,13 @@ endif
 
 call pathogen#infect()
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'taglist.vim'
+
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
@@ -400,7 +407,6 @@ let g:jedi#show_function_definition = "0"
 " Auto-wrap git commit lines
 au FileType gitcommit set tw=72
 
-"https://github.com/gmarik/vundle.git
 set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " CtrlP options
