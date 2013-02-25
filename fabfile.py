@@ -128,14 +128,17 @@ def _install_file(method, src, dst, *args, **kwargs):
 
 
 @task
-def install(section=None, submodules=False, *args, **kwargs):
+def install(section=None, *args, **kwargs):
     '''
     Install dotfile sections.
 
     Optionally pass in the name of a section to only install that section.
     '''
-    if submodules:
+    if kwargs.get('submodules', 'n').lower() in ['t', 'true', 'y', 'yes', '1']:
         update_submodules()
+
+    upgrade = kwargs.get('upgrade', 'n').lower() \
+              in ['t', 'true', 'y', 'yes', '1']
 
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
@@ -260,10 +263,11 @@ def install(section=None, submodules=False, *args, **kwargs):
                 cargs = config.get(section, 'args')
             except ConfigParser.NoOptionError:
                 cargs = ''
+
             try:
                 upgrade_args = config.get(section, 'upgrade_args')
             except ConfigParser.NoOptionError:
-                upgrade_args = ''
+                upgrade_args = cargs
 
             try:
                 sudo = config.getboolean(section, 'sudo')
@@ -273,7 +277,7 @@ def install(section=None, submodules=False, *args, **kwargs):
                 multi = config.getboolean(section, 'multiple_install')
             except ConfigParser.NoOptionError:
                 multi = False
-            if 'upgrade' in args and upgrade_args:
+            if upgrade and upgrade_args:
                 cargs = upgrade_args
             if multi:
                 install = ' '.join(installs)
