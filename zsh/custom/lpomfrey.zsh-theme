@@ -17,11 +17,16 @@ virtualenv_info() {
     echo "$VENV_PROMPT_BEFORE$(basename $VIRTUAL_ENV)$VENV_PROMPT_AFTER"
 }
 
+show_time() {
+    (( $COLUMNS > 80 )) || return
+    date --rfc-3339=seconds 
+}
+
 VENV_PROMPT_BEFORE="%{$fg_no_bold[blue]%}venv%{$fg_no_bold[blue]%}:(%{$fg_no_bold[yellow]%}"
 VENV_PROMPT_AFTER="%{$fg_no_bold[blue]%}) %{$reset_color%}"
 
-PROMPT='%{$fg_no_bold[yellow]%}%n%{$reset_color%}%{$fg_no_bold[yellow]%}@%m%{$reset_color%}%{$fg_no_bold[cyan]%}:%{$reset_color%}%{$fg_no_bold[cyan]%}${PWD/#$HOME/~}$ %{$reset_color%}'
-RPROMPT='%(1j.%{$fg_no_bold[red]%}jobs:(%{$fg_no_bold[yellow]%}%j%{$fg_no_bold[red]%}) .)%{$reset_color%}$(virtualenv_info)%{$reset_color%}$(git_prompt_info)%{$reset_color%}%{${FG[024]}%}$(date --rfc-3339=seconds)%{$reset_color%}'
+PROMPT='%{$fg_no_bold[yellow]%}%n%{$reset_color%}%{$fg_no_bold[yellow]%}@%m%{$reset_color%}%{$fg_no_bold[cyan]%}:%{$reset_color%}%{$fg_no_bold[cyan]%}%$(( $COLUMNS / 3 ))<..<${PWD/#$HOME/~}$ %{$reset_color%}'
+RPROMPT='%(1j.%{$fg_no_bold[red]%}jobs:(%{$fg_no_bold[yellow]%}%j%{$fg_no_bold[red]%}) .)%{$reset_color%}$(virtualenv_info)%{$reset_color%}$(git_prompt_info)%{$reset_color%}%{${FG[024]}%}$(show_time)%{$reset_color%}'
 
 ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %d"  # Prevent env vars appearing in title
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%d%<<"
