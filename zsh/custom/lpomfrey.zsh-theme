@@ -4,7 +4,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_no_bold[magenta]%}git%{$fg_no_bold[magenta]%}
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 #ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg_no_bold[red]%}✗%{$reset_color%}%{$fg_no_bold[magenta]%})"
 #ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg_no_bold[green]%}✓%{$reset_color%}%{$fg_no_bold[magenta]%})"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg_no_bold[red]%}!%{$reset_color%}%{$fg_no_bold[magenta]%})"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg_bold[red]%}!%{$reset_color%}%{$fg_no_bold[magenta]%})"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_no_bold[magenta]%})"
 
 virtualenv_info() {
@@ -24,7 +24,7 @@ show_time() {
 }
 
 hg_prompt_info() {
-    hg prompt --angle-brackets "${HG_PROMPT_BEFORE}<branch>< <status>>${HG_PROMPT_AFTER}" 2> /dev/null
+    hg prompt --angle-brackets "${HG_PROMPT_BEFORE}<branch>< %{$fg_bold[red]%}<status>%{$reset_color%}>${HG_PROMPT_AFTER}" 2> /dev/null
 }
 
 HG_PROMPT_BEFORE="%{$fg_no_bold[grey]%}hg:(%{$fg_no_bold[yellow]%}"
