@@ -1,5 +1,5 @@
 [user]
-	name = Luke Pomfrey
+	name = {{ name }}
 	email = {{ email }}
 [color]
     ui = true
