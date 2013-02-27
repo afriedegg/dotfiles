@@ -16,8 +16,11 @@ VENV_PROMPT_BEFORE="%{$fg_no_bold[blue]%}venv:(%{$fg_no_bold[yellow]%}"
 VENV_PROMPT_AFTER="%{$fg_no_bold[blue]%}) %{$reset_color%}"
 
 show_time() {
-    (( $COLUMNS > 80 )) || return
-    date --rfc-3339=seconds 
+    if (( $COLUMNS > 100 )); then
+        date --rfc-3339=seconds
+    elif (( $COLUMNS > 60 )); then
+        echo "%*"
+    fi
 }
 
 hg_prompt_info() {
