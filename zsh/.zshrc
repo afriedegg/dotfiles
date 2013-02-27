@@ -154,3 +154,6 @@ fi
 
 bindkey '^[OA' up-line-or-search
 bindkey '^[OB' down-line-or-search
+
+# Sets PS1 for tmux
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
