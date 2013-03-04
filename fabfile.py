@@ -160,11 +160,20 @@ def install(section=None, *args, **kwargs):
     Optionally pass in the name of a section to only install that section.
     '''
     global install
-    if kwargs.get('submodules', 'n').lower() in ['t', 'true', 'y', 'yes', '1']:
+
+    from_section = kwargs.get('from_section', None)
+
+    init = str(kwargs.get('init', 'true')).lower() \
+           in ['t', 'true', 'y', 'yes', '1']
+    if init:
+        local('git submodule update --init > /dev/null')
+
+    if str(kwargs.get('submodules', 'n')).lower() \
+    in ['t', 'true', 'y', 'yes', '1']:
         update_submodules()
 
-    upgrade = kwargs.get('upgrade', 'n').lower() \
-              in ['t', 'true', 'y', 'yes', '1']
+    upgrade = str(kwargs.get('upgrade', 'n')).lower() \
+        in ['t', 'true', 'y', 'yes', '1']
 
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
@@ -199,13 +208,16 @@ def install(section=None, *args, **kwargs):
                                              section)
         for requirement in requirements:
             if requirement != section:
-                install(requirement, installed=installed)
+                install(requirement, installed=installed,
+                        init=False, from_section=section)
         installed.append(section)
         if ':' in section:
             stype, section_name = section.split(':')
         else:
             stype, section_name = 'file', section
-
+        if from_section is not None:
+            logging.info('{0} is a requirement of {1}...'
+                         .format(section, from_section))
         do_install = raw_input('Install {0}? [Yn]\t'.format(section_name))
         if do_install and not do_install.lower().startswith('y'):
             continue
