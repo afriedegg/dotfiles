@@ -6,10 +6,35 @@ import logging
 import re
 
 import jinja2
-from fabric.api import lcd, local, settings, task
+from fabric.api import local, settings, task
 
 
 logging.basicConfig(level=logging.INFO)
+
+
+class CircularDependencyError(Exception):
+    pass
+
+
+def _resolve_dependencies(available_sections, required_sections,
+                          section, seen=None):
+    if seen is None and section is not None:
+        seen = set([section])
+    requirements = []
+
+    for requirement in required_sections:
+        next_requirements = available_sections[requirement]
+        if requirement in seen:
+            raise CircularDependencyError
+        r = _resolve_dependencies(
+                available_sections,
+                next_requirements,
+                requirement,
+                seen=seen,
+            )
+        requirements.extend([req for req in r if req not in requirements])
+    requirements.append(section)
+    return requirements
 
 
 def _render_template(template, context):
@@ -134,6 +159,7 @@ def install(section=None, *args, **kwargs):
 
     Optionally pass in the name of a section to only install that section.
     '''
+    global install
     if kwargs.get('submodules', 'n').lower() in ['t', 'true', 'y', 'yes', '1']:
         update_submodules()
 
@@ -143,7 +169,10 @@ def install(section=None, *args, **kwargs):
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
     config.read(os.path.join(basedir, 'dotfiles.conf'))
-
+    available_sections = \
+        dict((section, config.get(section, 'depends').split(',') if
+                       config.has_option(section, 'depends') else [])
+             for section in config.sections())
     sections = []
     if section is not None:
         for s in re.split('[\s,]+', section):
@@ -161,14 +190,24 @@ def install(section=None, *args, **kwargs):
     else:
         sections = config.sections()
 
+    installed = kwargs.pop('installed', [])
     for section in sections:
+        if section in installed:
+            continue
+        requirements = _resolve_dependencies(available_sections,
+                                             available_sections[section],
+                                             section)
+        for requirement in requirements:
+            if requirement != section:
+                install(requirement, installed=installed)
+        installed.append(section)
         if ':' in section:
             stype, section_name = section.split(':')
         else:
             stype, section_name = 'file', section
 
-        install = raw_input('Install {0}? [Yn]\t'.format(section_name))
-        if install and not install.lower().startswith('y'):
+        do_install = raw_input('Install {0}? [Yn]\t'.format(section_name))
+        if do_install and not do_install.lower().startswith('y'):
             continue
         if stype == 'files':
             sectiondir = os.path.join(basedir, section_name).rstrip('/')
