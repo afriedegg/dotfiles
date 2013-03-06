@@ -48,7 +48,7 @@ if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 		"vcs_compare 60 255" \
 		"vcs_branch 245 255" \
 		"battery 137 127" \
-		#"load 237 167" \
+		"load 237 167" \
 		"date_day 235 136" \
 		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
