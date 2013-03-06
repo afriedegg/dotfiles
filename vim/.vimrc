@@ -40,10 +40,10 @@ syntax enable
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-"let mapleader = ","
-"let g:mapleader = ","
-let mapleader = "\\"
-let g:mapleader = "\\"
+let mapleader = ","
+let g:mapleader = ","
+"let mapleader = "\\"
+"let g:mapleader = "\\"
 
 " keep 50 lines of command line history
 set history=50
@@ -398,6 +398,7 @@ endfunction
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 
+" powerline
 let g:Powerline_symbols = 'fancy'
 
 " vim-jedi
@@ -413,3 +414,13 @@ set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+
+" vim-gitgutter
+let g:gitgutter_enabled = 0
+nmap <F12> :ToggleGitGutter<cr>
+nmap <C-F12> :ToggleGitGutterLineHighlights<cr>
+
+" Source a local configuration file if available
+if filereadable("~/.vimrc.local")
+    source ~/.vimrc.local
+endif
