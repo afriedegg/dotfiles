@@ -73,7 +73,8 @@ set tm=500
 set wildmenu
 
 " Ignore compiled files
-set wildignore=*.o,*.so,*.sw[op],*.py[oc],*~
+set wildignore=*.o,*.so,*.swo,*.swp,*.pyc,*.pyo,*~
+let NERDTreeIgnore=['\.egg-info$','\.o$','\.so$','\.swo$','\.swp$','\.pyc$','\.pyo$','\~$']
 
 " No case insensitive matching
 set noignorecase
