@@ -425,3 +425,6 @@ nmap <C-F12> :ToggleGitGutterLineHighlights<cr>
 if filereadable("~/.vimrc.local")
     source ~/.vimrc.local
 endif
+
+" salt
+autocmd BufRead *.sls set filetype=yaml
