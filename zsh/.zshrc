@@ -128,7 +128,7 @@ my_ip () {
 }
 
 serve_dir() {
-    twistd -n web --path . --port tcp:interface=${2:-127.0.0.1}:port=${1:-8000}
+    twistd --pidfile /tmp/twistdweb.$(date --rfc-3339=ns | sed -e "s/[^0-9]//g").pid -n web --path . --port tcp:interface=${2:-127.0.0.1}:port=${1:-8000}
 }
 
 nss_add_cert () {
