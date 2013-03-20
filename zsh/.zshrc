@@ -131,6 +131,10 @@ serve_dir() {
     twistd -n web --path . --port tcp:interface=${2:-127.0.0.1}:port=${1:-8000}
 }
 
+nss_add_cert () {
+    certutil -d sql:$HOME/.pki/nssdb -A -t TC -n ${1} -i ${2}
+}
+
 # Aliases
 alias my_ips="internal_ips"
 alias mng="python ./manage.py"
