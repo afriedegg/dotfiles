@@ -22,8 +22,15 @@ call vundle#rc("$HOME/.vim/vundle/")
 
 Bundle 'gmarik/vundle'
 
+Bundle 'python.vim'
 Bundle 'django.vim'
+Bundle 'nginx.vim'
 Bundle 'taglist.vim'
+Bundle 'ruby.vim'
+Bundle 'gnuplot.vim'
+Bundle 'scratch.vim'
+Bundle 'nanki/vim-objj'
+Bundle 'vim-perl/vim-perl'
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
