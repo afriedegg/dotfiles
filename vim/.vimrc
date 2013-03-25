@@ -18,10 +18,11 @@ endif
 call pathogen#infect()
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#rc("$HOME/.vim/vundle/")
 
 Bundle 'gmarik/vundle'
 
+Bundle 'django.vim'
 Bundle 'taglist.vim'
 
 " Uncomment the next line to make Vim more Vi-compatible
