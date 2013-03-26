@@ -53,6 +53,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Bundle 'groenewege/vim-less'
 Bundle 'hail2u/vim-css3-syntax'
+Bundle 'saltstack/salt-vim'
 
 
 " Uncomment the next line to make Vim more Vi-compatible
@@ -311,6 +312,9 @@ augroup filetypedetect
   endfunc
 augroup END
 
+" salt
+autocmd BufRead *.sls set filetype=sls
+
 "nnoremap / /\v " use python/perl style regex
 "vnoremap / /\v
 nnoremap <tab> %
@@ -422,10 +426,6 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
-
-
-" salt
-autocmd BufRead *.sls set filetype=yaml
 
 " vim-latex
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
