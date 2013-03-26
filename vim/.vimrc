@@ -341,8 +341,8 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
 
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+" NERDTree
+nmap <leader>y :NERDTree<cr>
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
@@ -401,6 +401,9 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 
+" salt
+autocmd BufRead *.sls set filetype=yaml
+
 " vim-latex
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
@@ -433,6 +436,3 @@ nmap <C-F12> :ToggleGitGutterLineHighlights<cr>
 if filereadable("~/.vimrc.local")
     source ~/.vimrc.local
 endif
-
-" salt
-autocmd BufRead *.sls set filetype=yaml
