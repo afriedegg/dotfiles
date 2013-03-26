@@ -22,6 +22,7 @@ call vundle#rc("$HOME/.vim/vundle/")
 
 Bundle 'gmarik/vundle'
 
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'python.vim'
 Bundle 'django.vim'
 Bundle 'nginx.vim'
@@ -31,6 +32,28 @@ Bundle 'gnuplot.vim'
 Bundle 'scratch.vim'
 Bundle 'nanki/vim-objj'
 Bundle 'vim-perl/vim-perl'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'gregsexton/gitv'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/snipmate-snippets'
+Bundle 'garbas/vim-snipmate'
+Bundle 'scrooloose/syntastic'
+Bundle 'vim-coffee-script'
+"Bundle 'nvie/vim-flake8'
+Bundle 'vim-flake8'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Bundle 'groenewege/vim-less'
+Bundle 'hail2u/vim-css3-syntax'
+
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
