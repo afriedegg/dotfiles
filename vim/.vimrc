@@ -342,7 +342,7 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 map <leader>q :e ~/buffer<cr>
 
 " NERDTree
-nmap <leader>y :NERDTree<cr>
+nmap <leader>y :NERDTreeToggle<cr>
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
