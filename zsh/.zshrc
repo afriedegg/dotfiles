@@ -9,7 +9,7 @@ fi
 eval `dircolors ~/.dir_colors`
 
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+#ZSH=$HOME/dotfiles/zsh/.oh-my-zsh
 ANTIGEN=$HOME/dotfiles/zsh/antigen
 
 # Set name of the theme to load.
@@ -40,8 +40,7 @@ COMPLETION_WAITING_DOTS="true"
 
 source $ANTIGEN/antigen.zsh
 antigen-lib
-antigen-bundle git
-antigen-bundle github
+antigen-use oh-my-zsh
 antigen-bundle git
 antigen-bundle github
 antigen-bundle debian
@@ -52,16 +51,17 @@ antigen-bundle pip
 antigen-bundle supervisor
 antigen-bundle heroku
 antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
+antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
+antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
 antigen-apply
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(
-    fabric
-    zshmarks
-)
-source $ZSH/oh-my-zsh.sh
+#plugins=(
+#)
+#source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 # Exports
