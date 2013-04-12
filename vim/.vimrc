@@ -452,8 +452,8 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " vim-gitgutter
 let g:gitgutter_enabled = 0
-nmap <F12> :ToggleGitGutter<cr>
-nmap <C-F12> :ToggleGitGutterLineHighlights<cr>
+nmap <F12> :GitGutterToggle<cr>
+nmap <C-F12> :GitGutterLineHighlightsToggle<cr>
 
 " Source a local configuration file if available
 if filereadable("~/.vimrc.local")
