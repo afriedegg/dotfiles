@@ -57,17 +57,12 @@ antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
 antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
 antigen-apply
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-#plugins=(
-#)
-#source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
 # Exports
 export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export EDITOR=vi
+
+# Load fasd
+eval "$(fasd --init auto)"
 
 # Functions
 walkup() {
@@ -137,6 +132,8 @@ nss_add_cert () {
 }
 
 # Aliases
+alias v='f -t -e vim -b viminfo'
+alias j="fasd_cd -d"
 alias my_ips="internal_ips"
 alias mng="python ./manage.py"
 alias runserver="python ./manage.py runserver"
