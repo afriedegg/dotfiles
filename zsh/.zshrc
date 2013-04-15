@@ -52,6 +52,7 @@ antigen-bundle pip
 antigen-bundle supervisor
 antigen-bundle heroku
 antigen-bundle zsh-users/zsh-syntax-highlighting
+antigen-bundle zsh-users/zsh-completions
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
 antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
