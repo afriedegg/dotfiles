@@ -54,6 +54,8 @@ Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Bundle 'groenewege/vim-less'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'saltstack/salt-vim'
+Bundle 'vim-scripts/undotree.vim'
+Bundle 'vim-scripts/vim-json-bundle'
 
 
 " Uncomment the next line to make Vim more Vi-compatible
@@ -165,13 +167,19 @@ set cmdheight=2
 "set number
 set relativenumber
 
-" Don't keep backup files and undofiles
+" No backups or swapfiles and global undo 
 set nobackup
 set noswapfile
-"set undofile
+if has("persistent_undo")
+    set undodir=$HOME/.vimundo
+    set undofile
+endif
 "set nowb
 "set viminfo^=%
 "set viminfo='100,:200,<50,s10,h 
+
+" Undotree
+nnoremap <F5> :UndotreeToggle<cr>
 
 set esckeys
 
