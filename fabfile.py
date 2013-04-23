@@ -208,8 +208,11 @@ def install(section=None, *args, **kwargs):
                                              section)
         for requirement in requirements:
             if requirement != section:
-                install(requirement, installed=installed,
-                        init=False, from_section=section)
+                try:
+                    install(requirement, installed=installed,
+                            init=False, from_section=section)
+                except TypeError:
+                    pass
         installed.append(section)
         if ':' in section:
             stype, section_name = section.split(':')
