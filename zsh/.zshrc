@@ -41,16 +41,25 @@ COMPLETION_WAITING_DOTS="true"
 source $ANTIGEN/antigen.zsh
 antigen-lib
 antigen-use oh-my-zsh
-antigen-bundle vundle
-antigen-bundle git
-antigen-bundle github
-antigen-bundle debian
+antigen-bundle bundler
 antigen-bundle command-not-found
-antigen-bundle python
+antigen-bundle debian
 antigen-bundle django
-antigen-bundle pip
-antigen-bundle supervisor
+antigen-bundle fasd
+antigen-bundle gem
+antigen-bundle git
+antigen-bundle git-extras
+antigen-bundle git-remote-branch
+antigen-bundle github
+antigen-bundle golang
 antigen-bundle heroku
+antigen-bundle pip
+antigen-bundle python
+antigen-bundle ssh-agent
+antigen-bundle supervisor
+antigen-bundle virtualenv
+antigen-bundle virtualenvwrapper
+antigen-bundle vundle
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
@@ -61,9 +70,6 @@ antigen-apply
 # Exports
 export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export EDITOR=vi
-
-# Load fasd
-eval "$(fasd --init auto)"
 
 # Functions
 walkup() {
@@ -157,17 +163,6 @@ fi
 # Completion
 if [[ ${TMUX:+intmux} == "intmux" ]]; then
     compctl -g '~/.teamocil/*(:t:r)' teamocil
-fi
-
-# Sources
-if [ -f ~/.local/bin/virtualenvwrapper_lazy.sh ] ; then
-    source ~/.local/bin/virtualenvwrapper_lazy.sh
-elif [ -f /usr/local/bin/virtualenvwrapper_lazy.sh ] ; then
-    source /usr/local/bin/virtualenvwrapper_lazy.sh
-elif [ -f ~/.local/bin/virtualenvwrapper.sh ] ; then
-    source ~/.local/bin/virtualenvwrapper.sh
-elif [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
-    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 if [ -f ~/.zshrc.local ] ; then
