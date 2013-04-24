@@ -55,7 +55,6 @@ antigen-bundle golang
 antigen-bundle heroku
 antigen-bundle pip
 antigen-bundle python
-antigen-bundle ssh-agent
 antigen-bundle supervisor
 antigen-bundle virtualenv
 antigen-bundle virtualenvwrapper
