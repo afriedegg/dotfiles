@@ -8,6 +8,11 @@ fi
 
 eval `dircolors ~/.dir_colors`
 
+# Exports
+export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export EDITOR=vi
+
+
 # Path to your oh-my-zsh configuration.
 #ZSH=$HOME/dotfiles/zsh/.oh-my-zsh
 ANTIGEN=$HOME/dotfiles/zsh/antigen
@@ -66,10 +71,6 @@ antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
 antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
 antigen-apply
-
-# Exports
-export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-export EDITOR=vi
 
 # Functions
 walkup() {
