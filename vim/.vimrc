@@ -18,7 +18,7 @@ endif
 call pathogen#infect()
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc("$HOME/.vim/vundle/")
+call vundle#rc("$HOME/.vundle/")
 
 Bundle 'gmarik/vundle'
 
