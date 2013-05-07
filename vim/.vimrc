@@ -435,6 +435,8 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+cnoremap mkd !mkdir -p <c-r>=expand("%:h")<cr>
+
 " vim-latex
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
