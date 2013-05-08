@@ -152,6 +152,7 @@ alias tn="tmux new -s"
 alias tna="tmux new -t"
 alias tsw="tmux switch -t"
 alias :q="exit"
+alias mc="MC_SKIN=~/.config/mc/skins/solarized.ini mc"
 
 # Disable autocorrect
 if [ -f ~/.zsh_nocorrect ]; then
