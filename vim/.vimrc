@@ -24,6 +24,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'python.vim'
+Bundle 'tshirtman/vim-cython'
 Bundle 'django.vim'
 Bundle 'nginx.vim'
 Bundle 'taglist.vim'
