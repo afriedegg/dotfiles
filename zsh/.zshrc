@@ -64,6 +64,7 @@ antigen-bundle urltools
 antigen-bundle virtualenv
 antigen-bundle virtualenvwrapper
 antigen-bundle vundle
+antigen-bundle wakeonlan
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle zsh-users/zsh-completions
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
