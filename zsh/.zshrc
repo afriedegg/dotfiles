@@ -153,6 +153,7 @@ alias tna="tmux new -t"
 alias tsw="tmux switch -t"
 alias :q="exit"
 alias mc="MC_SKIN=~/.config/mc/skins/solarized.ini mc"
+alias gaa="git add $(git status --porcelain | awk '{ print $2 }')"
 
 # Disable autocorrect
 if [ -f ~/.zsh_nocorrect ]; then
