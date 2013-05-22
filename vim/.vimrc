@@ -48,6 +48,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'vim-coffee-script'
 "Bundle 'nvie/vim-flake8'
 Bundle 'vim-flake8'
+Bundle 'Chiel92/vim-autoformat'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'davidhalter/jedi-vim'
@@ -470,3 +471,10 @@ nmap <C-F12> :GitGutterLineHighlightsToggle<cr>
 if filereadable("~/.vimrc.local")
     source ~/.vimrc.local
 endif
+
+" autoformat
+noremap <F3> :Autoformat<CR><CR>
+let g:formatprg_args_cs = '--mode=cs --style=linux --indent=spaces=4'
+let g:formatprg_args_c = '--mode=c --style=linux --indent=spaces=4'
+let g:formatprg_java = 'astyle'
+let g:formatprg_args_java = '--mode=java--style=linux --indent=spaces=4'
