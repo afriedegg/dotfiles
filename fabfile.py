@@ -6,7 +6,7 @@ import logging
 import re
 
 import jinja2
-from fabric.api import local, settings, task
+from fabric.api import local, settings, task, lcd
 
 
 logging.basicConfig(level=logging.INFO)
@@ -27,11 +27,11 @@ def _resolve_dependencies(available_sections, required_sections,
         if requirement in seen:
             raise CircularDependencyError
         r = _resolve_dependencies(
-                available_sections,
-                next_requirements,
-                requirement,
-                seen=seen,
-            )
+            available_sections,
+            next_requirements,
+            requirement,
+            seen=seen,
+        )
         requirements.extend([req for req in r if req not in requirements])
     requirements.append(section)
     return requirements
@@ -52,8 +52,8 @@ def _get_template_context(*args):
         confirmed = False
         while not confirmed:
             context[var] = raw_input('Enter {0} :\t'.format(var))
-            answer = raw_input('Got {0}. Is this correct? [Yn]\t'
-                                .format(context[var]))
+            answer = raw_input(
+                'Got {0}. Is this correct? [Yn]\t'.format(context[var]))
             if not answer or answer.lower().startswith('y'):
                 confirmed = True
     return context
@@ -164,12 +164,12 @@ def install(section=None, *args, **kwargs):
     from_section = kwargs.get('from_section', None)
 
     init = str(kwargs.get('init', 'true')).lower() \
-           in ['t', 'true', 'y', 'yes', '1']
+        in ['t', 'true', 'y', 'yes', '1']
     if init:
         local('git submodule update --init > /dev/null')
 
     if str(kwargs.get('submodules', 'n')).lower() \
-    in ['t', 'true', 'y', 'yes', '1']:
+            in ['t', 'true', 'y', 'yes', '1']:
         update_submodules()
 
     upgrade = str(kwargs.get('upgrade', 'n')).lower() \
@@ -178,10 +178,13 @@ def install(section=None, *args, **kwargs):
     basedir = os.path.dirname(__file__)
     config = ConfigParser.ConfigParser()
     config.read(os.path.join(basedir, 'dotfiles.conf'))
-    available_sections = \
-        dict((section, config.get(section, 'depends').split(',') if
-                       config.has_option(section, 'depends') else [])
-             for section in config.sections())
+    available_sections = dict(
+        (
+            section,
+            config.get(section, 'depends').split(',')
+            if config.has_option(section, 'depends') else []
+        ) for section in config.sections()
+    )
     sections = []
     if section is not None:
         for s in re.split('[\s,]+', section):
@@ -264,8 +267,8 @@ def install(section=None, *args, **kwargs):
                 templates.extend(glob.glob(os.path.join(sectiondir, '.*')))
             else:
                 templates = \
-                        [os.path.join(sectiondir, f)
-                         for f in templates.split(',') if f]
+                    [os.path.join(sectiondir, f)
+                     for f in templates.split(',') if f]
 
             for link in links:
                 if not (link.endswith('dotfile.pre_install')
@@ -303,7 +306,7 @@ def install(section=None, *args, **kwargs):
 
             post_install = os.path.join(sectiondir, 'dotfile.post_install')
             if os.path.exists(post_install) \
-            and os.access(post_install, os.X_OK):
+                    and os.access(post_install, os.X_OK):
                 local(post_install)
         elif stype == 'installer':
             try:
@@ -366,3 +369,23 @@ def update_submodules():
     local('git submodule update --recursive')
     local('git submodule status --recursive')
     local('git submodule')
+
+
+@task
+def add_git_dude_repo(repo, method='clone'):
+    if not method in ['clone', 'link']:
+        logging.error('{0} is not a valid method!'.format(method))
+        return
+    if not os.path.isdir(os.path.expanduser('~/.git-dude')):
+        try:
+            os.makedirs(os.path.expanduser('~/.git-dude'))
+        except OSError as e:
+            logging.error(
+                'Error creating ~/.git-dude directory: {0}'.format(e)
+            )
+            return
+    with lcd(os.path.expanduser('~/.git-dude')):
+        if method == 'clone':
+            local('git clone --mirror "{0}"'.format(repo))
+        elif method == 'link':
+            local('ln -s "{0}"'.format(repo))

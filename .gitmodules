@@ -25,3 +25,6 @@
 [submodule "zsh/fasd"]
 	path = zsh/fasd
 	url = https://github.com/clvv/fasd.git
+[submodule "git-dude"]
+	path = git-dude
+	url = git://github.com/sickill/git-dude.git
