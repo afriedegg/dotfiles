@@ -388,4 +388,5 @@ def add_git_dude_repo(repo, method='clone'):
         if method == 'clone':
             local('git clone --mirror "{0}"'.format(repo))
         elif method == 'link':
+            repo = os.path.abspath(os.path.expanduser(repo))
             local('ln -s "{0}"'.format(repo))
