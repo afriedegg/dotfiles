@@ -57,6 +57,7 @@ antigen-bundle git-remote-branch
 antigen-bundle github
 antigen-bundle golang
 antigen-bundle heroku
+antigen-bundle jira
 antigen-bundle pip
 antigen-bundle python
 antigen-bundle supervisor
@@ -181,3 +182,6 @@ bindkey '^[OB' down-line-or-search
 
 # Sets PS1 for tmux
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+
+# jira plugin
+JIRA_RAPID_BOARD="yes"
