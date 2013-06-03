@@ -478,3 +478,6 @@ let g:formatprg_args_cs = '--mode=cs --style=linux --indent=spaces=4'
 let g:formatprg_args_c = '--mode=c --style=linux --indent=spaces=4'
 let g:formatprg_java = 'astyle'
 let g:formatprg_args_java = '--mode=java --style=linux --indent=spaces=4'
+
+" syntastic
+let g:syntastic_python_checkers=['flake8', 'python', 'pyflakes']
