@@ -482,3 +482,4 @@ let g:formatprg_args_java = '--mode=java --style=linux --indent=spaces=4'
 
 " syntastic
 let g:syntastic_python_checkers=['flake8', 'python']
+let g:syntastic_html_checkers=['tidy',]
