@@ -48,7 +48,7 @@ antigen-use oh-my-zsh
 antigen-bundle bundler
 antigen-bundle command-not-found
 antigen-bundle debian
-antigen-bundle django
+#antigen-bundle django
 antigen-bundle fasd
 antigen-bundle gem
 antigen-bundle git
@@ -61,13 +61,13 @@ antigen-bundle jira
 antigen-bundle pip
 antigen-bundle python
 antigen-bundle supervisor
-antigen-bundle urltools
+#antigen-bundle urltools
 antigen-bundle virtualenv
 antigen-bundle virtualenvwrapper
 antigen-bundle vundle
 antigen-bundle wakeonlan
 antigen-bundle zsh-users/zsh-syntax-highlighting
-antigen-bundle zsh-users/zsh-completions
+#antigen-bundle zsh-users/zsh-completions
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
 antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
