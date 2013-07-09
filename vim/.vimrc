@@ -488,3 +488,6 @@ let g:syntastic_html_checkers=['tidy',]
 if filereadable(glob("~/.vimrc.local")) 
     source ~/.vimrc.local
 endif
+
+" Set filetype
+au BufRead,BufNewFile *.go set filetype=go
