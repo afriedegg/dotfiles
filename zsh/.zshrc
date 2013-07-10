@@ -221,6 +221,9 @@ alias py="ipython"
 function gaa() {
     git add $(git status --porcelain | awk '{ print $2 }')
 }
+function gam() {
+    git add $(git status --porcelain | awk '$1 == "M" { print $2 }')
+}
 
 # Disable autocorrect
 if [ -f ~/.zsh_nocorrect ]; then
