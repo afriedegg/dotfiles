@@ -3,7 +3,7 @@ autoload -U colors && colors
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_no_bold[green]%}%{$bg[green]%}%{$fg_no_bold[white]%} git: %{$fg_bold[white]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_no_bold[green]%} "
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg_bold[red]%}!%{$fg_no_bold[white]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg_bold[red]%}!!%{$fg_no_bold[white]%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 virtualenv_info() {
@@ -11,8 +11,8 @@ virtualenv_info() {
     echo "$VENV_PROMPT_BEFORE$(basename $VIRTUAL_ENV)$VENV_PROMPT_AFTER"
 }
 
-VENV_PROMPT_BEFORE="%{$fg_no_bold[blue]%}%{$bg[blue]%} %{$fg_no_bold[white]%}venv: %{$fg_bold[white]%}"
-VENV_PROMPT_AFTER="%{$fg_no_bold[blue]%}%{$bg[blue]%} %{$fg_no_bold[white]%}"
+VENV_PROMPT_BEFORE="%{$fg_no_bold[yellow]%}%{$bg[yellow]%} %{$fg_no_bold[white]%}venv: %{$fg_bold[white]%}"
+VENV_PROMPT_AFTER="%{$fg_no_bold[yellow]%}%{$bg[yellow]%} %{$fg_no_bold[white]%}"
 
 show_time() {
     if (( $COLUMNS > 100 )); then
@@ -32,7 +32,7 @@ HG_PROMPT_AFTER="%{$fg_no_bold[white]%}"
 PROMPT='%{${BG[024]}%}%{$fg_no_bold[white]%}%n@%m %{$reset_color%}%{$bg[blue]%}%{${FG[024]}%}⮀ \
 %{$fg_bold[white]%}%$(( $COLUMNS / 3 ))<..<${PWD/#$HOME/~} %{$reset_color%}%{$fg_no_bold[blue]%}⮀ %{$reset_color%}'
 RPROMPT='%(1j.%{$fg_no_bold[red]%}%{$bg[red]%}%{$fg[white]%} jobs: %{$fg_bold[white]%}%j%{$fg_no_bold[red]%}%{$bg[red]%}%{$fg[white]%}.)\
-$(virtualenv_info)$(git_prompt_info)$(hg_prompt_info)%{${FG[024]}%}%{${BG[024]}%}%{$fg[white]%} $(show_time)%{$reset_color%}'
+$(virtualenv_info)$(git_prompt_info)$(hg_prompt_info)%{$fg[grey]%}%{$bg[grey]%}%{$fg[white]%} $(show_time)%{$reset_color%}'
 
 ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %d"  # Prevent env vars appearing in title
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%d%<<"
