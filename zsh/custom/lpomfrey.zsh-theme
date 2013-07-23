@@ -17,7 +17,7 @@ show_time() {
 }
 
 hg_prompt_info() {
-    if (( $termcap[colors] > 128 )) || [[ $TERM == "xterm-256color" ]]; then
+    if [[ $TERM == "xterm-256color" ]]; then
         hg prompt --angle-brackets \
 "${HG_PROMPT_BEFORE}<branch>< %{$fg_bold[red]%}<status> %{$fg_no_bold[yellow]%}>${HG_PROMPT_AFTER}" 2> /dev/null
     else
@@ -26,7 +26,7 @@ hg_prompt_info() {
     fi
 }
 
-if (( $termcap[colors] > 128 )) || [[ $TERM == "xterm-256color" ]]; then
+if [[ $TERM == "xterm-256color" ]]; then
     VENV_PROMPT_BEFORE="%{$fg_no_bold[yellow]%}%{$bg[yellow]%} %{$fg_no_bold[white]%}venv: %{$fg_bold[white]%}"
     VENV_PROMPT_AFTER="%{$fg_no_bold[yellow]%}%{$bg[yellow]%} %{$fg_no_bold[white]%}"
     HG_PROMPT_BEFORE="%{$fg_no_bold[white]%}%{$bg[white]%}%{$fg_no_bold[yellow]%} hg: "
