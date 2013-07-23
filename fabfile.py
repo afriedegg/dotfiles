@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 import ConfigParser
 import glob
 import os
 import shutil
 import logging
-import re
 
 import jinja2
 from fabric.api import local, settings, task, lcd
@@ -153,7 +155,7 @@ def _install_file(method, src, dst, *args, **kwargs):
 
 
 @task
-def install(section=None, *args, **kwargs):
+def install(*args, **kwargs):
     '''
     Install dotfile sections.
 
@@ -186,8 +188,9 @@ def install(section=None, *args, **kwargs):
         ) for section in config.sections()
     )
     sections = []
-    if section is not None:
-        for s in re.split('[\s,]+', section):
+    if args:
+        for s in args:
+            s = s.strip()
             if s in config.sections():
                 sections.append(s)
             else:
