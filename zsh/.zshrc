@@ -45,6 +45,7 @@ antigen-bundle heroku
 antigen-bundle pip
 antigen-bundle python
 antigen-bundle supervisor
+antigen-bundle tmux
 antigen-bundle virtualenv
 antigen-bundle virtualenvwrapper
 antigen-bundle vundle
