@@ -39,7 +39,7 @@ antigen-bundle gem
 antigen-bundle git
 antigen-bundle git-extras
 antigen-bundle git-remote-branch
-antigen-bundle github
+#antigen-bundle github
 antigen-bundle golang
 antigen-bundle heroku
 antigen-bundle pip
