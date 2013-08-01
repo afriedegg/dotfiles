@@ -168,6 +168,7 @@ alias shell_plus="python ./manage.py shell_plus"
 alias ta="tmux attach -t"
 alias v='f -t -e vim -b viminfo'
 alias zshreload=". ~/.zshrc"
+alias grp="git remote | xargs -n1 git remote prune"
 
 function gaa() {
     git add $(git status --porcelain | awk '{ print $2 }')
