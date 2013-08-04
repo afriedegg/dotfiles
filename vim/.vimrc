@@ -60,6 +60,7 @@ Bundle 'hail2u/vim-css3-syntax'
 Bundle 'saltstack/salt-vim'
 Bundle 'vim-scripts/undotree.vim'
 Bundle 'vim-scripts/vim-json-bundle'
+Bundle 'wting/rust.vim'
 
 
 " Uncomment the next line to make Vim more Vi-compatible
@@ -334,7 +335,7 @@ vnoremap <tab> %
 map <Esc>[H  <Home>
 map <Esc>[F  <End>
 map <F4> <Esc>:%s/\s\+$//g<CR>
-"nmap <leader>w :w!<cr>
+nmap <leader>w :w!<cr>
 set pastetoggle=<F2>
 
 " When you press gv you vimgrep after the selected text
