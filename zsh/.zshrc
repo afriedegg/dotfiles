@@ -189,6 +189,12 @@ if [[ ${TMUX:+intmux} == "intmux" ]]; then
     compctl -g '~/.teamocil/*(:t:r)' teamocil
 fi
 
+autoload bashcompinit
+bashcompinit
+for file in $HOME/dotfiles/zsh/custom/bashcomp/*.bash; do
+    source ${file}
+done
+
 if [ -f ~/.zshrc.local ] ; then
     source ~/.zshrc.local
 fi
