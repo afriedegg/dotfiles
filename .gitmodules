@@ -25,3 +25,6 @@
 [submodule "git-dude"]
 	path = git-dude
 	url = git://github.com/sickill/git-dude.git
+[submodule "jq"]
+	path = jq
+	url = https://github.com/stedolan/jq.git

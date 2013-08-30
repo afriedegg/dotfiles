@@ -393,3 +393,17 @@ def add_git_dude_repo(repo, method='clone'):
         elif method == 'link':
             repo = os.path.abspath(os.path.expanduser(repo))
             local('ln -s "{0}"'.format(repo))
+
+
+@task
+def install_jq():
+    local('git submodule update --init')
+    with lcd('{0}'.format(os.path.join(os.path.dirname(__file__), 'jq'))):
+        local('bundle install --binstubs=~/.local/bin --gemfile=docs/Gemfile '
+              '--path=~/.gem')
+        local('rm -rf docs/.bundle')
+        local('autoreconf')
+        local('./configure --prefix=${HOME}/.local')
+        local('make')
+        local('make install')
+        local('make clean')
