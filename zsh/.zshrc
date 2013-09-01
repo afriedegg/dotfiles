@@ -73,17 +73,6 @@ walkup() {
     return 1
 }
 
-internal_ips () {
-    echo $(ifconfig | grep "inet " | awk '{ print $2 }')
-    return 0
-}
-
-
-my_ip () {
-    echo $(internal_ips | awk '{ print $1 }' | sed -e 's/addr://g')
-    return 0
-}
-
 serve_dir () {
     twistd --pidfile /tmp/twistdweb.$(date --rfc-3339=ns | sed -e "s/[^0-9]//g").pid -n web --path . --port tcp:interface=${2:-127.0.0.1}:port=${1:-8000}
 }
