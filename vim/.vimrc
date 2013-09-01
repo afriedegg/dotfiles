@@ -61,6 +61,7 @@ Bundle 'saltstack/salt-vim'
 Bundle 'vim-scripts/undotree.vim'
 Bundle 'vim-scripts/vim-json-bundle'
 Bundle 'wting/rust.vim'
+Bundle 'Rykka/riv.vim'
 
 
 " Uncomment the next line to make Vim more Vi-compatible
