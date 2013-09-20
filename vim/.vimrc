@@ -63,6 +63,7 @@ Bundle 'vim-scripts/vim-json-bundle'
 Bundle 'wting/rust.vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'mitsuhiko/vim-jinja'
+Bundle 'haproxy'
 
 
 " Uncomment the next line to make Vim more Vi-compatible
