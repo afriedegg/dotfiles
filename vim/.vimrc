@@ -211,10 +211,6 @@ map 0 ^
 map j gj
 map k gk
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
@@ -245,16 +241,16 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-  set switchbuf=useopen,usetab",newtab
-  set stal=2
+    set switchbuf=useopen,usetab",newtab
+    set stal=2
 catch
 endtry
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal g`\"" |
+            \ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -265,17 +261,17 @@ vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
+    nmap <D-j> <M-j>
+    nmap <D-k> <M-k>
+    vmap <D-j> <M-j>
+    vmap <D-k> <M-k>
 endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
@@ -337,8 +333,6 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
@@ -354,11 +348,29 @@ map <leader>s? z=
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
+" Open a Scratch buffer
+map <leader>q :Scratch<cr>
 
 " NERDTree
 nmap <leader>y :NERDTreeToggle<cr>
+
+" Insert modeline at top of file
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! InsertModeline(onlyft)
+    if a:onlyft
+        let l:modeline = printf(" vim: set filetype=%s :", &filetype)
+    else
+        let l:modeline = printf(" vim: set ft=%s ts=%d sw=%d tw=%d %set :",
+            \ &filetype, &tabstop, &shiftwidth, &textwidth,
+            \ &expandtab ? '' : 'no')
+    endif
+    let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+    call CmdLine("1s/^/" . l:modeline . "\\r/<CR><C-o>")
+endfunction
+nnoremap <silent> <Leader>ml :call InsertModeline(0)<CR>
+nnoremap <silent> <Leader>mf :call InsertModeline(1)<CR>
+
 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
@@ -398,22 +410,22 @@ endfunction
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+    if buflisted(l:alternateBufNum)
+        buffer #
+    else
+        bnext
+    endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
+    endif
 endfunction
 
 cnoremap mkd !mkdir -p <c-r>=expand("%:h")<cr>
@@ -447,11 +459,6 @@ let g:gitgutter_enabled = 0
 nmap <F12> :GitGutterToggle<cr>
 nmap <C-F12> :GitGutterLineHighlightsToggle<cr>
 
-" Source a local configuration file if available
-if filereadable("~/.vimrc.local")
-    source ~/.vimrc.local
-endif
-
 " autoformat
 noremap <F3> :Autoformat<CR><CR>
 let g:formatprg_args_cs = '--mode=cs --style=linux --indent=spaces=4'
@@ -463,14 +470,14 @@ let g:formatprg_args_java = '--mode=java --style=linux --indent=spaces=4'
 let g:syntastic_python_checkers=['flake8', 'python']
 let g:syntastic_html_checkers=['tidy',]
 
-if filereadable(glob("~/.vimrc.local")) 
-    source ~/.vimrc.local
-endif
-
 " Set filetype
-
 autocmd BufRead,BufNewFile,FileReadPost *.go set filetype=go
 autocmd BufRead,BufNewFile,FileReadPost *.sls set filetype=sls
 autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
 autocmd BufRead,BufNewFile,FileReadPost *.py set filetype=python
 autocmd BufRead,BufNewFile,FileReadPost *.html set filetype=htmldjango
+
+" Source a local configuration file if available
+if filereadable("~/.vimrc.local")
+    source ~/.vimrc.local
+endif
