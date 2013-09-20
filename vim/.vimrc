@@ -366,6 +366,7 @@ function! InsertModeline(onlyft)
             \ &expandtab ? '' : 'no')
     endif
     let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+    let l:modeline = substitute(l:modeline, '\/', '\\/', "g")
     call CmdLine("1s/^/" . l:modeline . "\\r/<CR><C-o>")
 endfunction
 nnoremap <silent> <Leader>ml :call InsertModeline(0)<CR>
