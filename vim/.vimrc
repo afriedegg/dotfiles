@@ -64,7 +64,7 @@ Bundle 'wting/rust.vim'
 Bundle 'Rykka/riv.vim'
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'haproxy'
-
+Bundle 'bufexplorer.zip'
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
