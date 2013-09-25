@@ -65,6 +65,7 @@ Bundle 'Rykka/riv.vim'
 Bundle 'mitsuhiko/vim-jinja'
 Bundle 'haproxy'
 Bundle 'bufexplorer.zip'
+Bundle 'empanda/vim-varnish'
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
