@@ -47,8 +47,6 @@ Bundle 'scrooloose/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-coffee-script'
-"Bundle 'nvie/vim-flake8'
-Bundle 'vim-flake8'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'jnwhiteh/vim-golang'
@@ -461,6 +459,9 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:gitgutter_enabled = 0
 nmap <F12> :GitGutterToggle<cr>
 nmap <C-F12> :GitGutterLineHighlightsToggle<cr>
+
+" errors
+noremap <F7> :Errors<cr>
 
 " autoformat
 noremap <F3> :Autoformat<CR><CR>
