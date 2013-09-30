@@ -402,7 +402,7 @@ def install_jq():
         local('bundle install --binstubs=~/.local/bin --gemfile=docs/Gemfile '
               '--path=~/.gem')
         local('rm -rf docs/.bundle')
-        local('autoreconf')
+        local('autoreconf -i')
         local('./configure --prefix=${HOME}/.local')
         local('make')
         local('make install')
