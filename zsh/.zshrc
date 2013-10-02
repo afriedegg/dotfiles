@@ -92,6 +92,10 @@ function gam() {
     git add $(git status --porcelain | awk '$1 == "M" { print $2 }')
 }
 
+function pdfmin() {
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel-1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${1%.pdf}-min.pdf" "${1}"
+}
+
 # Disable autocorrect
 if [ -f ~/.zsh_nocorrect ]; then
     while read -r COMMAND; do
