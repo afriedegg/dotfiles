@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+git submodule update --init
+cd jq
+bundle install --binstubs=~/.local/bin --gemfile=docs/Gemfile --path=~/.gem
+rm -rf docs/.bundle
+autoreconf -i
+./configure --prefix=${HOME}/.local
+make
+make install
+make clean

@@ -5,6 +5,7 @@ import ConfigParser
 import glob
 import os
 import shutil
+import sys
 import logging
 
 import jinja2
@@ -195,7 +196,7 @@ def install(*args, **kwargs):
                 sections.append(s)
             else:
                 found = False
-                for type in ['files', 'installer']:
+                for type in ['files', 'installer', 'script']:
                     if ':'.join([type, s]) in config.sections():
                         sections.append(':'.join([type, s]))
                         found = True
@@ -355,9 +356,32 @@ def install(*args, **kwargs):
                     with settings(warn_only=True):
                         local(command)
 
+        elif stype == 'script':
+            script = os.path.join(
+                os.path.join(os.path.dirname(__file__), 'scripts'),
+                section_name
+            )
+            if not (os.path.exists(script) and os.access(script, os.X_OK)):
+                logging.error('"{0}" is not a valid script.'.format(script))
+                sys.exit(1)
+            try:
+                sudo = config.getboolean(section, 'sudo')
+            except ConfigParser.NoOptionError:
+                sudo = False
+            try:
+                cwd = config.get(section, 'cwd')
+            except ConfigParser.NoOptionError:
+                cwd = ''
+            with lcd(os.path.join(
+                    os.path.dirname(__file__), os.path.expanduser(cwd))):
+                if sudo:
+                    local('sudo {0}'.format(script))
+                else:
+                    local(script)
         else:
             logging.error('{0}? WTF am I meant to do with that?'
                           .format(section))
+            sys.exit(1)
         logging.info('Installed {0}...'.format(section))
 
 
@@ -393,17 +417,3 @@ def add_git_dude_repo(repo, method='clone'):
         elif method == 'link':
             repo = os.path.abspath(os.path.expanduser(repo))
             local('ln -s "{0}"'.format(repo))
-
-
-@task
-def install_jq():
-    local('git submodule update --init')
-    with lcd('{0}'.format(os.path.join(os.path.dirname(__file__), 'jq'))):
-        local('bundle install --binstubs=~/.local/bin --gemfile=docs/Gemfile '
-              '--path=~/.gem')
-        local('rm -rf docs/.bundle')
-        local('autoreconf -i')
-        local('./configure --prefix=${HOME}/.local')
-        local('make')
-        local('make install')
-        local('make clean')
