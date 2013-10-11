@@ -64,7 +64,6 @@ Bundle 'mitsuhiko/vim-jinja'
 Bundle 'haproxy'
 Bundle 'bufexplorer.zip'
 Bundle 'lpomfrey/vim-varnish'
-Bundle 'csscomb/csscomb-for-vim'
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
