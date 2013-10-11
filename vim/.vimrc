@@ -64,6 +64,7 @@ Bundle 'mitsuhiko/vim-jinja'
 Bundle 'haproxy'
 Bundle 'bufexplorer.zip'
 Bundle 'lpomfrey/vim-varnish'
+Bundle 'csscomb/csscomb-for-vim'
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
@@ -174,7 +175,7 @@ set cmdheight=2
 "set number
 set relativenumber
 
-" No backups or swapfiles and global undo 
+" No backups or swapfiles and global undo
 set nobackup
 set noswapfile
 if has("persistent_undo")
@@ -183,7 +184,7 @@ if has("persistent_undo")
 endif
 "set nowb
 "set viminfo^=%
-"set viminfo='100,:200,<50,s10,h 
+"set viminfo='100,:200,<50,s10,h
 
 " Undotree
 nnoremap <F5> :UndotreeToggle<cr>
@@ -481,6 +482,7 @@ autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
 autocmd BufRead,BufNewFile,FileReadPost *.py set filetype=python
 autocmd BufRead,BufNewFile,FileReadPost *.html set filetype=htmldjango
 autocmd BufRead,BufNewFile,FileReadPost *.vcl set filetype=vcl
+autocmd BufRead,BufNewFile,FileReadPost *.less set filetype=less
 
 " Source a local configuration file if available
 if filereadable("~/.vimrc.local")
