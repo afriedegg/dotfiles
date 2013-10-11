@@ -476,12 +476,12 @@ let g:syntastic_html_checkers=['tidy',]
 
 " Set filetype
 autocmd BufRead,BufNewFile,FileReadPost *.go set filetype=go
-autocmd BufRead,BufNewFile,FileReadPost *.sls set filetype=sls
-autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
-autocmd BufRead,BufNewFile,FileReadPost *.py set filetype=python
 autocmd BufRead,BufNewFile,FileReadPost *.html set filetype=htmldjango
-autocmd BufRead,BufNewFile,FileReadPost *.vcl set filetype=vcl
 autocmd BufRead,BufNewFile,FileReadPost *.less set filetype=less
+autocmd BufRead,BufNewFile,FileReadPost *.py set filetype=python
+autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
+autocmd BufRead,BufNewFile,FileReadPost *.sls set filetype=sls
+autocmd BufRead,BufNewFile,FileReadPost *.vcl set filetype=vcl
 
 " Source a local configuration file if available
 if filereadable("~/.vimrc.local")
