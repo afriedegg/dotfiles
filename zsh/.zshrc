@@ -73,6 +73,7 @@ nss_add_cert () {
 alias :q="exit"
 alias ack="ack-grep"
 alias collectstatic="python ./manage.py collectstatic --noinput"
+alias grp="git remote | xargs -n1 git remote prune"
 alias j="fasd_cd -d"
 alias mc="MC_SKIN=~/.config/mc/skins/solarized.ini mc"
 alias mng="python ./manage.py"
@@ -83,8 +84,8 @@ alias runserver="python ./manage.py runserver"
 alias shell_plus="python ./manage.py shell_plus"
 alias ta="tmux attach -t"
 alias v='f -t -e vim -b viminfo'
+alias vagrant-new="vagrant init precise32 http://files.vagrantup.com/precise32.box"
 alias zshreload=". ~/.zshrc"
-alias grp="git remote | xargs -n1 git remote prune"
 
 function gaa() {
     git add $(git status --porcelain | awk '{ print $2 }')
