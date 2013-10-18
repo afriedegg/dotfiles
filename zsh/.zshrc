@@ -49,6 +49,7 @@ antigen-bundle pip
 antigen-bundle python
 antigen-bundle supervisor
 antigen-bundle tmux
+antigen-bundle vagrant
 antigen-bundle virtualenv
 antigen-bundle virtualenvwrapper
 antigen-bundle vundle
