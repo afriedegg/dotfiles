@@ -56,6 +56,7 @@ antigen-bundle vundle
 antigen-bundle wakeonlan
 antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
+antigen-bundle $HOME/dotfiles/zsh/custom/plugins/virtualbox
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
 antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
 antigen-apply
@@ -86,6 +87,8 @@ alias shell_plus="python ./manage.py shell_plus"
 alias ta="tmux attach -t"
 alias v='f -t -e vim -b viminfo'
 alias vagrant-new="vagrant init precise32 http://files.vagrantup.com/precise32.box"
+alias vboxheadless="VBoxHeadless"
+alias vboxmanage="VBoxManage"
 alias zshreload=". ~/.zshrc"
 
 function gaa() {
