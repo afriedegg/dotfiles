@@ -1,9 +1,11 @@
-add-apt-repository ppa:chris-lea/node.js
-add-apt-repository ppa:gencfsm
-add-apt-repository ppa:mozillateam/firefox-next
-add-apt-repository ppa:mozillateam/thunderbird-next
-add-apt-repository ppa:pypy/ppa
+add-apt-repository -y ppa:chris-lea/node.js
+add-apt-repository -y ppa:gencfsm
+add-apt-repository -y ppa:mozillateam/firefox-next
+add-apt-repository -y ppa:mozillateam/thunderbird-next
+add-apt-repository -y ppa:pypy/ppa
 echo "deb http://download.videolan.org/pub/debian/stable/ /" > /etc/apt/sources.list.d/videolan.list
 echo "deb-src http://download.videolan.org/pub/debian/stable/ /" >> /etc/apt/sources.list.d/videolan.list
 wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc | apt-key add -
+echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
+wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
 apt-get update

@@ -11,7 +11,7 @@ eval `dircolors ~/.dir_colors`
 # Exports
 if (( ! $+VIRTUAL_ENV )) || (( ! $+PATH )); then
     # In if to ensure we don't fuck up pew shells
-    export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+    export PATH=/home/lukepomfrey/bin:/home/lukepomfrey/.local/bin:/usr/lib/lightdm/lightdm:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 fi
 export EDITOR=vi
 
