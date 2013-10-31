@@ -1,4 +1,4 @@
 --color
 --color-filename=blue
 --color-lineno=cyan
---pager="less -r"
+--pager=less -R
