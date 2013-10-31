@@ -70,6 +70,55 @@ nss_add_cert () {
     certutil -d sql:$HOME/.pki/nssdb -A -t TC -n ${1} -i ${2}
 }
 
+tmux_refresh () {
+    if [[ -n $TMUX ]]; then
+        NEW_SSH_AUTH_SOCK=`tmux showenv|grep ^SSH_AUTH_SOCK|cut -d = -f 2`
+        if [[ -n $NEW_SSH_AUTH_SOCK ]] && [[ -S $NEW_SSH_AUTH_SOCK ]]; then 
+            export SSH_AUTH_SOCK=$NEW_SSH_AUTH_SOCK  
+        fi
+        NEW_GPG_AGENT_INFO=`tmux showenv|grep ^GPG_AGENT_INFO|cut -d = -f 2`
+        if [[ -n $NEW_GPG_AGENT_INFO ]] && [[ -S $NEW_GPG_AGENT_INFO ]]; then 
+            export GPG_AGENT_INFO=$NEW_GPG_AGENT_INFO  
+        fi
+        NEW_GNOME_KEYRING_CONTROL=`tmux showenv|grep ^GNOME_KEYRING_CONTROL|cut -d = -f 2`
+        if [[ -n $NEW_GNOME_KEYRING_CONTROL ]] && [[ -S $NEW_GNOME_KEYRING_CONTROL ]]; then 
+            export GNOME_KEYRING_CONTROL=$NEW_GNOME_KEYRING_CONTROL  
+        fi
+        NEW_DISPLAY=`tmux showenv|grep ^DISPLAY|cut -d = -f 2`
+        if [[ -n $NEW_DISPLAY ]]; then 
+            export DISPLAY=$NEW_DISPLAY  
+        fi
+        NEW_SSH_ASKPASS=`tmux showenv|grep ^SSH_ASKPASS|cut -d = -f 2`
+        if [[ -n $NEW_SSH_ASKPASS ]]; then 
+            export SSH_ASKPASS=$NEW_SSH_ASKPASS  
+        fi
+        NEW_SSH_AGENT_PID=`tmux showenv|grep ^SSH_AGENT_PID|cut -d = -f 2`
+        if [[ -n $NEW_SSH_AGENT_PID ]]; then 
+            export SSH_AGENT_PID=$NEW_SSH_AGENT_PID  
+        fi
+        NEW_SSH_CONNECTION=`tmux showenv|grep ^SSH_CONNECTION|cut -d = -f 2`
+        if [[ -n $NEW_SSH_CONNECTION ]]; then 
+            export SSH_CONNECTION=$NEW_SSH_CONNECTION  
+        fi
+        NEW_WINDOWID=`tmux showenv|grep ^WINDOWID|cut -d = -f 2`
+        if [[ -n $NEW_WINDOWID ]]; then 
+            export WINDOWID=$NEW_WINDOWID  
+        fi
+        NEW_XAUTHORITY=`tmux showenv|grep ^XAUTHORITY|cut -d = -f 2`
+        if [[ -n $NEW_XAUTHORITY ]]; then 
+            export XAUTHORITY=$NEW_XAUTHORITY  
+        fi
+        NEW_GNOME_KEYRING_PID=`tmux showenv|grep ^GNOME_KEYRING_PID|cut -d = -f 2`
+        if [[ -n $NEW_GNOME_KEYRING_PID ]]; then 
+            export GNOME_KEYRING_PID=$NEW_GNOME_KEYRING_PID  
+        fi
+        NEW_GNOME_DESKTOP_SESSION_ID=`tmux showenv|grep ^GNOME_DESKTOP_SESSION_ID|cut -d = -f 2`
+        if [[ -n $NEW_GNOME_DESKTOP_SESSION_ID ]]; then 
+            export GNOME_DESKTOP_SESSION_ID=$NEW_GNOME_DESKTOP_SESSION_ID  
+        fi
+    fi
+}
+
 # Aliases
 alias :q="exit"
 alias ack="ack-grep"
