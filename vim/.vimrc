@@ -64,6 +64,8 @@ Bundle 'mitsuhiko/vim-jinja'
 Bundle 'haproxy'
 Bundle 'bufexplorer.zip'
 Bundle 'lpomfrey/vim-varnish'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
@@ -473,6 +475,14 @@ let g:formatprg_args_java = '--mode=java --style=linux --indent=spaces=4'
 " syntastic
 let g:syntastic_python_checkers=['flake8', 'python']
 let g:syntastic_html_checkers=['tidy',]
+
+" session
+let g:session_directory = ~/.vimsessions
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
+let g:session_autosave_periodic = 0
+let g:session_default_to_last = 0
+
 
 " Set filetype
 autocmd BufRead,BufNewFile,FileReadPost *.go set filetype=go
