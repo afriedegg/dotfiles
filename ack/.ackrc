@@ -2,3 +2,4 @@
 --color-filename=blue
 --color-lineno=cyan
 --pager=less -R
+--ignore-dir=.tox
