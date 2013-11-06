@@ -477,7 +477,7 @@ let g:syntastic_python_checkers=['flake8', 'python']
 let g:syntastic_html_checkers=['tidy',]
 
 " session
-let g:session_directory = ~/.vimsessions
+let g:session_directory = '~/.vimsessions'
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
 let g:session_autosave_periodic = 0
