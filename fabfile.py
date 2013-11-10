@@ -12,7 +12,7 @@ import jinja2
 from fabric.api import local, settings, task, lcd
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(msg)s')
 
 
 class CircularDependencyError(Exception):
@@ -417,3 +417,39 @@ def add_git_dude_repo(repo, method='clone'):
         elif method == 'link':
             repo = os.path.abspath(os.path.expanduser(repo))
             local('ln -s "{0}"'.format(repo))
+
+
+@task
+def switch_ssh_config(config=None):
+    SSH_CONFIG = os.path.expanduser('~/.ssh/config')
+    if config is not None:
+        config = os.path.expanduser(os.path.join('~/.ssh/configs/', config))
+    else:
+        configs = sorted(glob.glob(os.path.expanduser('~/.ssh/configs/*')))
+        menu = dict(enumerate(configs))
+        selection = None
+        while config is None:
+            try:
+                print('Select a config to enable:')
+                for i, conf in menu.items():
+                    print('    {0}: {1}'.format(i, os.path.basename(conf)))
+                try:
+                    selection = int(raw_input())
+                except ValueError:
+                    selection = None
+                if selection in menu:
+                    config = menu[selection]
+            except KeyboardInterrupt:
+                logging.info('Aborted...')
+                return
+    if not os.path.exists(config):
+        logging.error(
+            'SSH config "{0}" does not exist in ~/.ssh/configs/'.format(
+                config
+            )
+        )
+        return
+    if os.path.exists(SSH_CONFIG) or os.path.islink(SSH_CONFIG):
+        os.remove(SSH_CONFIG)
+    os.symlink(config, SSH_CONFIG)
+    logging.info('Linked "{0}" to "{1}".'.format(SSH_CONFIG, config))
