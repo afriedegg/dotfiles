@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 add-apt-repository -y ppa:chris-lea/node.js
 add-apt-repository -y ppa:gencfsm
 add-apt-repository -y ppa:mozillateam/firefox-next
