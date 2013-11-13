@@ -152,8 +152,7 @@ function pdfmin() {
 }
 
 function psgrep() {
-    prgname=$(echo $1 | sed 's/^\(.\)/\[\1\]/')
-    ps aux | grep "${prgname}"
+    ps -ef | grep "$(echo $1 | sed 's/^\(.\)/\[\1\]/')"
 }
 
 # Disable autocorrect
