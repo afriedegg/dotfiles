@@ -151,6 +151,11 @@ function pdfmin() {
     gs -sDEVICE=pdfwrite -dCompatibilityLevel-1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${1%.pdf}-min.pdf" "${1}"
 }
 
+function psgrep() {
+    prgname=$(echo $1 | sed 's/^\(.\)/\[\1\]/')
+    ps aux | grep "${prgname}"
+}
+
 # Disable autocorrect
 if [ -f ~/.zsh_nocorrect ]; then
     while read -r COMMAND; do
