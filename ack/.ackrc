@@ -61,6 +61,7 @@
 --type-add=js:ext:js
 --type-add=json:ext:json
 --type-add=jsp:ext:jsp,jspx,jhtm,jhtml
+--type-add=less:ext:less
 --type-add=lisp:ext:lisp,lsp
 --type-add=lua:ext:lua
 --type-add=make:ext:mak
@@ -85,8 +86,10 @@
 --type-add=ruby:firstlinematch:/^#!.*\bruby/
 --type-add=ruby:is:Rakefile
 --type-add=rust:ext:rs
+--type-add=sass:ext:scss,sass
 --type-add=scala:ext:scala
 --type-add=scheme:ext:scm,ss
+--type-add=scss:ext:scss,sass
 --type-add=shell:ext:sh,bash,csh,tcsh,ksh,zsh,fish
 --type-add=shell:firstlinematch:/^#!.*\b(?:ba|t?c|k|z|fi)?sh\b/
 --type-add=smalltalk:ext:st
