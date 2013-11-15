@@ -41,7 +41,8 @@ else
 
     # Block connections to Ubuntu's ad server, just in case
     if ! grep -q productsearch.ubuntu.com /etc/hosts; then
-        echo -e "\n127.0.0.1 productsearch.ubuntu.com" | sudo tee -a /etc/hosts >/dev/null
+        echo -e "\n127.0.0.1 productsearch.ubuntu.com" | sudo tee -a /etc/hosts >/dev/null \
+        && "productsearch.ubuntu.com successfully blocked in /etc/hosts"
     else
         echo "productsearch.ubuntu.com already blocked in /etc/hosts"
     fi
