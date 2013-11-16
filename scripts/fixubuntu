@@ -8,7 +8,7 @@ if [ $V \< 12.10 ]; then
     echo "Good news! Your version of Ubuntu doesn't invade your privacy."
 else
     # Turn off "Remote Search", so search terms in Dash don't get sent to the internet
-    if [[ $(gsettings get com.canonical.Unity.Lenses remote-content-search) =~ "none" ]]; then
+    if [[ "$(gsettings get com.canonical.Unity.Lenses remote-content-search)" =~ "none" ]]; then
         echo "Unity remote content search already disabled."
     else
         gsettings set com.canonical.Unity.Lenses remote-content-search "'none'" \
@@ -29,7 +29,9 @@ else
                 "more_suggestions-ebay.scope" \
                 "more_suggestions-ubuntushop.scope" \
                 "more_suggestions-skimlinks.scope"; do
-            if [[ $(gsettings get com.canonical.Unity.Lenses disabled-scopes) =~ "'${scope}'" ]]; then
+            if [[ "$(gsettings get com.canonical.Unity.Lenses disabled-scopes)" =~ "[]" ]]; then
+                gsettings set com.canonical.Unity.Lenses disabled-scopes "['${scope}']"
+            elif [[ "$(gsettings get com.canonical.Unity.Lenses disabled-scopes)" =~ "'${scope}'" ]]; then
                 echo "Scope '${scope}' already disabled."
             else
                 gsettings set com.canonical.Unity.Lenses disabled-scopes \
