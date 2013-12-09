@@ -2,10 +2,10 @@
 	"name": "Default color scheme for terminal prompts",
 	"groups": {
 		"background:divider": { "fg": "gray5", "bg": "gray0" },
-		"branch": { "fg": "white", "bg": "gray0" },
+		"branch": { "fg": "gray8", "bg": "gray0" },
 		"branch_clean": { "fg": "green", "bg": "gray0" },
 		"branch_dirty": { "fg": "red", "bg": "gray0" },
-		"virtualenv": { "fg": "white", "bg": "gray0" },
+		"virtualenv": { "fg": "gray8", "bg": "gray0" },
 		"session": { "fg": "black", "bg": "gray10", "attr": ["bold"] },
 		"date": { "fg": "gray8", "bg": "gray2" },
 		"time": { "fg": "gray10", "bg": "gray2", "attr": ["bold"] },
