@@ -7,9 +7,6 @@
 [submodule "solarized/dircolors-solarized"]
 	path = solarized/dircolors-solarized
 	url = git://github.com/huyz/dircolors-solarized.git
-[submodule "tmux/tmux-powerline"]
-	path = tmux/tmux-powerline
-	url = https://github.com/erikw/tmux-powerline.git
 [submodule "solarized/tmux-colors-solarized"]
 	path = solarized/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized.git
