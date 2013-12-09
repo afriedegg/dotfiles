@@ -26,6 +26,7 @@ hg_prompt_info() {
     fi
 }
 
+
 if [[ $TERM =~ "-256color" ]]; then
     VENV_PROMPT_BEFORE="%{$fg_no_bold[yellow]%}%{$bg[yellow]%} %{$fg_no_bold[white]%}venv: %{$fg_bold[white]%}"
     VENV_PROMPT_AFTER="%{$fg_no_bold[yellow]%}%{$bg[yellow]%} %{$fg_no_bold[white]%}"
@@ -35,17 +36,20 @@ if [[ $TERM =~ "-256color" ]]; then
     ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_no_bold[green]%} "
     ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg_bold[red]%}!!%{$fg_no_bold[white]%}"
     ZSH_THEME_GIT_PROMPT_CLEAN=""
+    ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg_no_bold[green]%}%{$bg[green]%}%{$fg_bold[white]%}⤴"$ZSH_THEME_GIT_PROMPT_SUFFIX
+    ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg_no_bold[green]%}%{$bg[green]%}%{$fg_bold[white]%}⤵"$ZSH_THEME_GIT_PROMPT_SUFFIX
+    ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg_no_bold[green]%}%{$bg[green]%}%{$fg_bold[white]%}➰"$ZSH_THEME_GIT_PROMPT_SUFFIX
     PROMPT='%{${BG[024]}%}%{$fg_no_bold[white]%}%n@%m %{$reset_color%}%{$bg[blue]%}%{${FG[024]}%}⮀ \
 %{$fg_bold[white]%}%$(( $COLUMNS / 3 ))<..<${PWD/#$HOME/~} %{$reset_color%}%{$fg_no_bold[blue]%}⮀ %{$reset_color%}'
     RPROMPT='%(1j.%{$fg_no_bold[red]%}%{$bg[red]%}%{$fg[white]%} jobs: %{$fg_bold[white]%}%j%{$fg_no_bold[red]%}%{$bg[red]%}%{$fg[white]%}.)\
-$(virtualenv_info)$(git_prompt_info)$(hg_prompt_info)%{$fg[grey]%}%{$bg[grey]%}%{$fg[white]%} $(show_time)%{$reset_color%}'
+$(virtualenv_info)$(git_prompt_info)$(git_remote_status)$(hg_prompt_info)%{$fg[grey]%}%{$bg[grey]%}%{$fg[white]%} $(show_time)%{$reset_color%}'
 else
     VENV_PROMPT_BEFORE="%{$fg_no_bold[blue]%}venv:(%{$fg_no_bold[yellow]%}"
     VENV_PROMPT_AFTER="%{$fg_no_bold[blue]%}) %{$reset_color%}"
     HG_PROMPT_BEFORE="%{$fg_no_bold[grey]%}hg:(%{$fg_no_bold[yellow]%}"
     HG_PROMPT_AFTER="%{$fg_no_bold[grey]%}) %{$reset_color%}"
     ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_no_bold[magenta]%}git%{$fg_no_bold[magenta]%}:(%{$fg_no_bold[yellow]%}"
-    ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+    ZSH_THEME_GIT_PROMPT_SUFFIX="$(git_remote_status)%{$reset_color%} "
     ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg_bold[red]%}!%{$reset_color%}%{$fg_no_bold[magenta]%})"
     ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_no_bold[magenta]%})"
     PROMPT='%{$fg_no_bold[yellow]%}%n%{$reset_color%}%{$fg_no_bold[yellow]%}@%m%{$reset_color%}%{$fg_no_bold[cyan]%}:%{$reset_color%}%{$fg_no_bold[cyan]%}%$(( $COLUMNS / 3 ))<..<${PWD/#$HOME/~}$ %{$reset_color%}'
