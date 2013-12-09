@@ -21,6 +21,9 @@
     "segments": {
         "right": [
             {
+                "name": "network_load"
+            },
+            {
                 "name": "external_ip"
             },
             {
