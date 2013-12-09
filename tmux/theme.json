@@ -2,7 +2,7 @@
     "default_module": "powerline.segments.common",
     "segment_data": {
         "uptime": {
-            "before": "⇑  "
+            "before": "⇑ "
         },
         "external_ip": {
             "before": "ⓦ  "
@@ -20,6 +20,15 @@
     },
     "segments": {
         "right": [
+            {
+                "name": "branch",
+                "args": {
+                    "status_colors": true
+                }
+            },
+            {
+                "name": "virtualenv"
+            },
             {
                 "name": "network_load"
             },
