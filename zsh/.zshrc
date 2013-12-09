@@ -181,4 +181,19 @@ bindkey '^[OA' up-line-or-search
 bindkey '^[OB' down-line-or-search
 
 # Sets PS1 for tmux
-PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+_powerline_tmux_setenv() {
+    emulate -L zsh
+    if [[ -n "$TMUX" ]]; then
+        tmux setenv -g TMUX_"$1"_$(tmux display -p "#D" | tr -d %) "$2"
+        tmux refresh -S
+    fi
+}
+
+_powerline_tmux_set_pwd() {
+    _powerline_tmux_setenv PWD "$PWD"
+}
+
+_powerline_tmux_set_columns() {
+    _powerline_tmux_setenv COLUMNS "$COLUMNS"
+}
+PS1="$PS1"'$(_powerline_tmux_set_pwd)'
