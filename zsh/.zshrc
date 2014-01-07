@@ -119,6 +119,25 @@ tmux_refresh () {
     fi
 }
 
+function ipscan() {
+    nmap -v -sn ${1:-192.168.0.0/16} | grep "\[host down\]" | awk '{print $5}'
+}
+
+function gaa() {
+    git add $(git status --porcelain | awk '{ print $2 }')
+}
+function gam() {
+    git add $(git status --porcelain | awk '$1 == "M" { print $2 }')
+}
+
+function pdfmin() {
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel-1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${1%.pdf}-min.pdf" "${1}"
+}
+
+function psgrep() {
+    ps -ef | grep "$(echo $1 | sed 's/^\(.\)/\[\1\]/')"
+}
+
 # Aliases
 alias :q="exit"
 alias ack="ack-grep"
@@ -139,21 +158,6 @@ alias vagrant-new="vagrant init precise32 http://files.vagrantup.com/precise32.b
 alias vboxheadless="VBoxHeadless"
 alias vboxmanage="VBoxManage"
 alias zshreload=". ~/.zshrc"
-
-function gaa() {
-    git add $(git status --porcelain | awk '{ print $2 }')
-}
-function gam() {
-    git add $(git status --porcelain | awk '$1 == "M" { print $2 }')
-}
-
-function pdfmin() {
-    gs -sDEVICE=pdfwrite -dCompatibilityLevel-1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${1%.pdf}-min.pdf" "${1}"
-}
-
-function psgrep() {
-    ps -ef | grep "$(echo $1 | sed 's/^\(.\)/\[\1\]/')"
-}
 
 # Disable autocorrect
 if [ -f ~/.zsh_nocorrect ]; then
