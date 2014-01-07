@@ -119,7 +119,8 @@ tmux_refresh () {
     fi
 }
 
-function ipscan() {
+function unusedipscan() {
+    # Find unused IPs in a given range
     nmap -v -sn ${1:-192.168.0.0/16} | grep "\[host down\]" | awk '{print $5}'
 }
 
