@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 add-apt-repository -y ppa:chris-lea/node.js
 add-apt-repository -y ppa:gencfsm
+add-apt-repository -y ppa:hansjorg/rust
 add-apt-repository -y ppa:mozillateam/firefox-next
 add-apt-repository -y ppa:mozillateam/thunderbird-next
 add-apt-repository -y ppa:pypy/ppa
