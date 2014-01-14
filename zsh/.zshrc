@@ -34,7 +34,6 @@ COMPLETION_WAITING_DOTS="true"
 
 source $ANTIGEN/antigen.zsh
 antigen-use oh-my-zsh
-antigen-bundle bower
 antigen-bundle bundler
 antigen-bundle command-not-found
 antigen-bundle debian
