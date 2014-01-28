@@ -124,7 +124,7 @@ function unusedipscan() {
 }
 
 function gaa() {
-    git add $(git status --porcelain | awk '{ print $2 }')
+    git add --all
 }
 function gam() {
     git add $(git status --porcelain | awk '$1 == "M" { print $2 }')
