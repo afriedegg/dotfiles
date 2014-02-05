@@ -69,6 +69,17 @@ nss_add_cert () {
     certutil -d sql:$HOME/.pki/nssdb -A -t TC -n ${1} -i ${2}
 }
 
+start_tmux () {
+    printf "Starting tmux...\n"
+    tmux start-server
+    for session in $TMUX_SESSIONS; do
+        printf "Starting session %s...\n" "${session}"
+        tmux has-session -t ${session} || tmux new-session -d -s ${session} "teamocil ${session}"
+    done
+    printf "Attaching to tmux...\n"
+    tmux attach
+}
+
 tmux_refresh () {
     if [[ -n $TMUX ]]; then
         NEW_SSH_AUTH_SOCK=`tmux showenv|grep ^SSH_AUTH_SOCK|cut -d = -f 2`
