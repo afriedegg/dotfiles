@@ -276,9 +276,6 @@ func! DeleteTrailingWS()
     %s/\s\+$//ge
     exe "normal `z"
 endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
 
 " Colorize column at 80 characters
 set colorcolumn=80
@@ -497,6 +494,11 @@ autocmd BufRead,BufNewFile,FileReadPost *.rs set filetype=rust
 
 autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
 autocmd BufRead,BufNewFile,FileReadPost *.js source ~/.vim/javascript
+
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
 
 " Source a local configuration file if available
 if filereadable("~/.vimrc.local")
