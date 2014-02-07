@@ -30,16 +30,7 @@
   "segments": {
     "right": [
       {
-        "name": "branch"
-      },
-      {
-        "name": "virtualenv"
-      },
-      {
         "name": "network_load"
-      },
-      {
-        "name": "external_ip"
       },
       {
         "name": "uptime",
