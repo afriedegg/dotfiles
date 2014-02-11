@@ -70,6 +70,8 @@ nss_add_cert () {
 }
 
 start_tmux () {
+    # Expects $TMUX_SESSIONS to be a list of sessions, e.g
+    # TMUX_SESSIONS=("session1" "session2" "session3")
     printf "Starting tmux...\n"
     tmux start-server
     for session in $TMUX_SESSIONS; do
