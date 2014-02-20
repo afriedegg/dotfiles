@@ -92,6 +92,7 @@
 --type-add=scss:ext:scss,sass
 --type-add=shell:ext:sh,bash,csh,tcsh,ksh,zsh,fish
 --type-add=shell:firstlinematch:/^#!.*\b(?:ba|t?c|k|z|fi)?sh\b/
+--type-add=sls:ext:sls
 --type-add=smalltalk:ext:st
 --type-add=sql:ext:sql,ctl
 --type-add=tcl:ext:tcl,itcl,itk
