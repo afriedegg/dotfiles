@@ -44,10 +44,6 @@
 				"name": "jobnum"
 			},
 			{
-				"module": "powerline.segments.shell",
-				"name": "last_pipe_status"
-			},
-			{
 				"name": "branch"
 			},
 			{
