@@ -57,8 +57,10 @@ antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/virtualbox
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
-antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
+#antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
 antigen-apply
+
+source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 ## Functions
 serve_dir () {

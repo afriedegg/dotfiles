@@ -10,3 +10,11 @@ snippet hed
 
 snippet prnt
 	from __future__ import print_function
+
+snippet usrimp
+	try:
+		from django.contrib.auth import get_user_model
+		User = get_user_model()
+	except:
+		# Django < 1.5
+		from django.contrib.auth.models import User
