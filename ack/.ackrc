@@ -95,6 +95,7 @@
 --type-add=sls:ext:sls
 --type-add=smalltalk:ext:st
 --type-add=sql:ext:sql,ctl
+--type-add=svg:ext:svg
 --type-add=tcl:ext:tcl,itcl,itk
 --type-add=tex:ext:tex,cls,sty
 --type-add=tt:ext:tt,tt2,ttml
