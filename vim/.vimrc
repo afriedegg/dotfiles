@@ -66,6 +66,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'lpomfrey/vim-varnish'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
+Bundle 'mustache/vim-mustache-handlebars'
 
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
