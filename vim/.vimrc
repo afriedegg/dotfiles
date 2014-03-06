@@ -490,6 +490,7 @@ autocmd BufRead,BufNewFile,FileReadPost *.handlebars set filetype=mustache
 autocmd BufRead,BufNewFile,FileReadPost *.html set filetype=htmldjango
 autocmd BufRead,BufNewFile,FileReadPost *.json set filetype=json
 autocmd BufRead,BufNewFile,FileReadPost *.less set filetype=less
+autocmd BufRead,BufNewFile,FileReadPost *.mustache set filetype=mustache
 autocmd BufRead,BufNewFile,FileReadPost *.py set filetype=python
 autocmd BufRead,BufNewFile,FileReadPost *.rs set filetype=rust
 autocmd BufRead,BufNewFile,FileReadPost *.sls set filetype=sls
