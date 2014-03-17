@@ -54,6 +54,7 @@
 --type-add=fortran:ext:f,f77,f90,f95,f03,for,ftn,fpp
 --type-add=go:ext:go
 --type-add=groovy:ext:groovy,gtmpl,gpp,grunit,gradle
+--type-add=handlebars:ext:handlebars
 --type-add=haskell:ext:hs,lhs
 --type-add=hh:ext:h
 --type-add=html:ext:htm,html
