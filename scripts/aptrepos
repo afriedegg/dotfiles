@@ -5,9 +5,14 @@ add-apt-repository -y ppa:hansjorg/rust
 add-apt-repository -y ppa:mozillateam/firefox-next
 add-apt-repository -y ppa:mozillateam/thunderbird-next
 add-apt-repository -y ppa:pypy/ppa
+# Videolan
 echo "deb http://download.videolan.org/pub/debian/stable/ /" > /etc/apt/sources.list.d/videolan.list
-echo "deb-src http://download.videolan.org/pub/debian/stable/ /" >> /etc/apt/sources.list.d/videolan.list
+echo "# deb-src http://download.videolan.org/pub/debian/stable/ /" >> /etc/apt/sources.list.d/videolan.list
 wget -O - http://download.videolan.org/pub/debian/videolan-apt.asc | apt-key add -
+# Heroku
 echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
 wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
+# Dropbox
+echo "deb http://linux.dropbox.com/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/dropbox.list
+apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
 apt-get update
