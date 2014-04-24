@@ -390,12 +390,9 @@ def update_submodules():
     '''
     Update all git submodules in tree.
     '''
-    local('git submodule init')
-    local('git submodule foreach --recursive '
-          '"(git checkout master; git pull)&"')
-    local('git submodule update --recursive')
-    local('git submodule status --recursive')
-    local('git submodule')
+    local('git submodule update --init')
+    local('git submodule foreach --recursive "git checkout master"')
+    local('git submodule foreach --recursive "git pull"')
 
 
 @task
