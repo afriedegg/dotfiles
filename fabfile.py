@@ -397,7 +397,7 @@ def update_submodules():
 
 @task
 def add_git_dude_repo(repo, method='clone'):
-    if not method in ['clone', 'link']:
+    if method not in ['clone', 'link']:
         logging.error('{0} is not a valid method!'.format(method))
         return
     if not os.path.isdir(os.path.expanduser('~/.git-dude')):
