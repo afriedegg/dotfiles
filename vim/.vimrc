@@ -337,7 +337,7 @@ map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
 " Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+map <leader>ss :setlocal spell! spelllang=en_gb<cr>
 
 " Shortcuts using <leader>
 map <leader>sn ]s
