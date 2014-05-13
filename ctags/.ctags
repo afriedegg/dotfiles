@@ -1,0 +1,4 @@
+--python-kinds=-i
+--exclude=*/build/*
+--exclude=*/*.egg-info/*
+--links=yes
