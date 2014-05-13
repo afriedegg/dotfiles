@@ -1,4 +1,8 @@
 --python-kinds=-i
---exclude=*/build/*
---exclude=*/*.egg-info/*
+--exclude=*.egg-info
+--exclude=.bzr
+--exclude=.git
+--exclude=.hg
+--exclude=.svn
+--exclude=build
 --links=yes
