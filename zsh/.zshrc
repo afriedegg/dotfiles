@@ -78,7 +78,9 @@ start_tmux () {
     tmux start-server
     for session in $TMUX_SESSIONS; do
         printf "Starting session %s...\n" "${session}"
-        tmux has-session -t ${session} || tmux new-session -d -s ${session} "teamocil ${session}"
+        tmux has-session -t ${session} 2>/dev/null || tmux new-session -d -s ${session} 2>/dev/null
+        printf "Running teamocil for %s...\n" "${session}"
+        tmux run-shell -t ${session}:1 "teamocil --here ${session}" 2>&1 >/dev/null
     done
     printf "Attaching to tmux...\n"
     tmux attach
