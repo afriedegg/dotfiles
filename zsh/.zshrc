@@ -34,16 +34,18 @@ COMPLETION_WAITING_DOTS="true"
 
 source $ANTIGEN/antigen.zsh
 antigen-use oh-my-zsh
-antigen-bundle bundler
 antigen-bundle command-not-found
 antigen-bundle debian
+antigen-bundle django
 antigen-bundle fasd
 antigen-bundle gem
 antigen-bundle git
 antigen-bundle git-extras
-antigen-bundle git-remote-branch
 antigen-bundle golang
 antigen-bundle heroku
+antigen-bundle mosh
+antigen-bundle node
+antigen-bundle npm
 antigen-bundle pip
 antigen-bundle python
 antigen-bundle supervisor
