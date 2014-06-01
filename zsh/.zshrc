@@ -84,7 +84,13 @@ start_tmux () {
         printf "Running teamocil for %s...\n" "${session}"
         tmux run-shell -t ${session}:1 "teamocil --here ${session}" 2>&1 >/dev/null
     done
-    printf "Attaching to tmux...\n"
+    printf "Waiting for sessions to start."
+    for i in {1..9}; do
+        sleep 1
+        printf "."
+    done
+    sleep 1
+    printf "\nAttaching to tmux...\n"
     tmux attach
 }
 
