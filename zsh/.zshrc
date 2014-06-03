@@ -226,3 +226,5 @@ _powerline_tmux_set_columns() {
     _powerline_tmux_setenv COLUMNS "$COLUMNS"
 }
 PS1="$PS1"'$(_powerline_tmux_set_pwd)'
+
+vundle-init() {}
