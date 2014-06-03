@@ -15,64 +15,68 @@ if filereadable("/etc/vim/vimrc.local")
     source /etc/vim/vimrc.local
 endif
 
-call pathogen#infect()
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc("$HOME/.vundle/")
-
-Bundle 'gmarik/vundle'
-
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'python.vim'
-Bundle 'hdima/python-syntax'
-Bundle 'tshirtman/vim-cython'
-Bundle 'django.vim'
-Bundle 'nginx.vim'
-Bundle 'taglist.vim'
-Bundle 'ruby.vim'
-Bundle 'gnuplot.vim'
-Bundle 'scratch.vim'
-Bundle 'TaskList.vim'
-Bundle 'vim-perl/vim-perl'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'gregsexton/gitv'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'scrooloose/snipmate-snippets'
-Bundle 'garbas/vim-snipmate'
-Bundle 'scrooloose/syntastic'
-Bundle 'einars/js-beautify'
-Bundle 'Chiel92/vim-autoformat'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'davidhalter/jedi-vim'
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
-Bundle 'groenewege/vim-less'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'saltstack/salt-vim'
-Bundle 'vim-scripts/undotree.vim'
-Bundle 'vim-scripts/vim-json-bundle'
-Bundle 'wting/rust.vim'
-Bundle 'Rykka/riv.vim'
-Bundle 'mitsuhiko/vim-jinja'
-Bundle 'haproxy'
-Bundle 'bufexplorer.zip'
-Bundle 'lpomfrey/vim-varnish'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-Bundle 'mustache/vim-mustache-handlebars'
-
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
 set nocompatible	" Use Vim defaults (much better!)
+
+call pathogen#infect()
+
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin("$HOME/.vundle/")
+
+Bundle 'gmarik/Vundle.vim'
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'python.vim'
+Plugin 'hdima/python-syntax'
+Plugin 'tshirtman/vim-cython'
+Plugin 'django.vim'
+Plugin 'nginx.vim'
+Plugin 'taglist.vim'
+Plugin 'ruby.vim'
+Plugin 'gnuplot.vim'
+Plugin 'scratch.vim'
+Plugin 'TaskList.vim'
+Plugin 'vim-perl/vim-perl'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'gregsexton/gitv'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'scrooloose/snipmate-snippets'
+Plugin 'garbas/vim-snipmate'
+Plugin 'scrooloose/syntastic'
+Plugin 'einars/js-beautify'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'davidhalter/jedi-vim'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Plugin 'groenewege/vim-less'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'saltstack/salt-vim'
+Plugin 'vim-scripts/undotree.vim'
+Plugin 'vim-scripts/vim-json-bundle'
+Plugin 'wting/rust.vim'
+Plugin 'Rykka/riv.vim'
+Plugin 'mitsuhiko/vim-jinja'
+Plugin 'haproxy'
+Plugin 'bufexplorer.zip'
+Plugin 'lpomfrey/vim-varnish'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'mustache/vim-mustache-handlebars'
+
+call vundle#end()
 
 set encoding=utf-8
 
