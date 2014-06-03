@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-ln -sf ~/dotfiles/zsh/fasd/fasd ~/.local/bin/
