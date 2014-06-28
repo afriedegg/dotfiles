@@ -75,6 +75,7 @@ Plugin 'lpomfrey/vim-varnish'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 
