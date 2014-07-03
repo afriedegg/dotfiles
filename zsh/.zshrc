@@ -166,7 +166,6 @@ function psgrep() {
 alias ack="ack-grep"
 alias collectstatic="python ./manage.py collectstatic --noinput"
 alias grp="git remote | xargs -n1 git remote prune"
-alias mc="MC_SKIN=~/.config/mc/skins/solarized.ini mc"
 alias mng="python ./manage.py"
 alias profileserver="python ./manage.py runprofileserver --kcachegrind --prof-path=${HOME}/prof/"
 alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
