@@ -205,13 +205,10 @@ map Q gq
 " Always show the status line
 set laststatus=2
 
-" Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f')<CR>
-vnoremap <silent> # :call VisualSelection('b')<CR>
+vnoremap <silent> * :call VisualSelection('f')<cr>
+vnoremap <silent> # :call VisualSelection('b')<cr>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
@@ -277,11 +274,11 @@ if has("mac") || has("macunix")
 endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
+function! DeleteTrailingWS()
     exe "normal mz"
     %s/\s\+$//ge
     exe "normal `z"
-endfunc
+endfunction
 
 " Colorize column at 80 characters
 set colorcolumn=80
@@ -304,20 +301,18 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 
-" salt
-
 "nnoremap / /\v " use python/perl style regex
 "vnoremap / /\v
 nnoremap <tab> %
 vnoremap <tab> %
 map <Esc>[H  <Home>
 map <Esc>[F  <End>
-map <F4> <Esc>:%s/\s\+$//g<CR>
+map <F4> <Esc>:%s/\s\+$//g<cr>
 nmap <leader>w :w!<cr>
 set pastetoggle=<F2>
 
 " When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
+vnoremap <silent> gv :call VisualSelection('gv')<cr>
 
 " Open vimgrep and put the cursor in the right position
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
@@ -326,7 +321,7 @@ map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+vnoremap <silent> <leader>r :call VisualSelection('replace')<cr>
 
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
@@ -373,10 +368,10 @@ function! InsertModeline(onlyft)
     endif
     let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
     let l:modeline = substitute(l:modeline, '\/', '\\/', "g")
-    call CmdLine("1s/^/" . l:modeline . "\\r/<CR><C-o>")
+    call CmdLine("1s/^/" . l:modeline . "\\r/<cr><C-o>")
 endfunction
-nnoremap <silent> <Leader>ml :call InsertModeline(0)<CR>
-nnoremap <silent> <Leader>mf :call InsertModeline(1)<CR>
+nnoremap <silent> <Leader>ml :call InsertModeline(0)<cr>
+nnoremap <silent> <Leader>mf :call InsertModeline(1)<cr>
 
 
 function! CmdLine(str)
@@ -406,14 +401,6 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -435,8 +422,10 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
-cnoremap mkd !mkdir -p <c-r>=expand("%:h")<cr>
-
+" Create directory for current file
+command! Mkd call CmdLine("!mkdir -p <c-r>=expand(\"%:h\")<cr><cr>")
+map <leader>m :Mkd<cr>
+    
 " vim-latex
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
@@ -471,7 +460,7 @@ nmap <C-F12> :GitGutterLineHighlightsToggle<cr>
 noremap <F7> :Errors<cr>
 
 " autoformat
-noremap <F3> :Autoformat<CR><CR>
+noremap <F3> :Autoformat<cr><cr>
 let g:formatprg_args_cs = '--mode=cs --style=linux --indent=spaces=4'
 let g:formatprg_args_c = '--mode=c --style=linux --indent=spaces=4'
 let g:formatprg_java = 'astyle'
