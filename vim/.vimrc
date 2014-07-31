@@ -300,6 +300,8 @@ if &t_Co > 2 || has("gui_running")
     colorscheme solarized
 endif
 
+set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 10
+
 
 "nnoremap / /\v " use python/perl style regex
 "vnoremap / /\v
