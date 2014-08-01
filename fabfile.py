@@ -12,6 +12,13 @@ import jinja2
 from fabric.api import local, settings, task, lcd
 
 
+try:
+    raw_input
+except NameError:
+    # Python3
+    raw_input = input
+
+
 logging.basicConfig(level=logging.INFO, format='%(msg)s')
 
 
@@ -74,7 +81,7 @@ def _create_backup(dst):
 
         try:
             os.rename(dst.rstrip('/'), backup)
-        except:
+        except (Exception, EnvironmentError):
             logging.exception('Couldn\'t create backup, aborting...')
             exit(1)
         else:
@@ -122,21 +129,21 @@ def _install_file(method, src, dst, *args, **kwargs):
             logging.debug('Writing template to {0}'.format(dst))
             with open(dst, 'w') as f:
                 f.write(content)
-        except:
+        except (Exception, EnvironmentError):
             failure = True
     elif method == 'link':
         try:
             logging.debug('Linking {0} to {1}'
                           .format(src.rstrip('/'), dst.rstrip('/')))
             os.symlink(src.rstrip('/'), dst.rstrip('/'))
-        except:
+        except (Exception, EnvironmentError):
             failure = True
     elif method == 'copy':
         try:
             logging.debug('Copying {0} to {1}'
                           .format(src.rstrip('/'), dst.rstrip('/')))
             shutil.copy2(src, dst)
-        except:
+        except (Exception, EnvironmentError):
             failure = True
     else:
         logging.info('{0}? {0}? WTF is {0}?'.format(method))
@@ -149,7 +156,7 @@ def _install_file(method, src, dst, *args, **kwargs):
             try:
                 os.rename(backup, dst)
                 logging.info('Restored')
-            except:
+            except (Exception, EnvironmentError):
                 logging.error('Failed to restore backup {0}. '
                               'Aborting...'.format(backup))
                 exit(1)
