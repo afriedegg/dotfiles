@@ -35,22 +35,15 @@ COMPLETION_WAITING_DOTS="true"
 source $ANTIGEN/antigen.zsh
 antigen-use oh-my-zsh
 antigen-bundle command-not-found
-antigen-bundle debian
 antigen-bundle django
-antigen-bundle gem
 antigen-bundle git
 antigen-bundle git-extras
-antigen-bundle golang
 antigen-bundle heroku
 antigen-bundle mosh
-antigen-bundle node
 antigen-bundle npm
 antigen-bundle pip
 antigen-bundle python
-antigen-bundle supervisor
-antigen-bundle tmux
 antigen-bundle vagrant
-antigen-bundle virtualenv
 antigen-bundle virtualenvwrapper
 antigen-bundle vundle
 antigen-bundle wakeonlan
@@ -58,7 +51,6 @@ antigen-bundle zsh-users/zsh-syntax-highlighting
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/fabric
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/virtualbox
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
-#antigen-theme $HOME/dotfiles/zsh/custom/lpomfrey.zsh-theme
 antigen-apply
 
 source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
