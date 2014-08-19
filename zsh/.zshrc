@@ -53,6 +53,7 @@ antigen-bundle $HOME/dotfiles/zsh/custom/plugins/virtualbox
 antigen-bundle $HOME/dotfiles/zsh/custom/plugins/zshmarks
 antigen-apply
 
+powerline-daemon -q
 source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 ## Functions
