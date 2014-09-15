@@ -30,32 +30,32 @@
   "segments": {
     "right": [
       {
-        "name": "network_load"
+        "function": "network_load"
       },
       {
-        "name": "system_load",
+        "function": "system_load",
         "priority": 50
       },
       {
-        "name": "uptime",
+        "function": "uptime",
         "priority": 50
       },
       {
-        "name": "date"
+        "function": "date"
       },
       {
-        "name": "date",
+        "function": "date",
         "args": {
           "format": "%H:%M",
           "istime": true
         }
       },
       {
-        "name": "battery"
+        "function": "battery"
       },
       {
-        "name": "hostname"
+        "function": "hostname"
       }
-        ]
+    ]
   }
 }
