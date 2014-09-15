@@ -23,16 +23,23 @@
 	"segments": {
 		"left": [
 			{
-				"name": "hostname"
+				"function": "powerline.segments.shell.mode"
 			},
 			{
-				"name": "user"
+				"function": "hostname",
+				"priority": 10
 			},
 			{
-				"name": "virtualenv"
+				"function": "user",
+				"priority": 30
 			},
 			{
-				"name": "cwd",
+				"function": "virtualenv",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.shell.cwd",
+				"priority": 10,
 				"args": {
 					"dir_limit_depth": 4
 				}
@@ -40,14 +47,16 @@
 		],
 		"right": [
 			{
-				"module": "powerline.segments.shell",
-				"name": "jobnum"
+				"function": "powerline.segments.shell.jobnum",
+				"priority": 20
 			},
 			{
-				"name": "branch"
+				"function": "branch",
+        "priority": 40
 			},
 			{
-				"name": "date",
+				"function": "date",
+        "priority": 40,
         "args": {
           "format": "%c"
         }
