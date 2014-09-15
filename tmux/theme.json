@@ -5,10 +5,7 @@
       "before": "⇑ "
     },
     "branch": {
-      "before": " ",
-      "args": {
-        "status_colors": true
-      }
+      "before": " "
     },
     "virtualenv": {
       "before": "ⓔ "
@@ -53,9 +50,13 @@
       {
         "function": "battery"
       },
-      {
-        "function": "hostname"
-      }
+			{
+				"function": "hostname",
+				"priority": 10,
+			  "args": {
+			  	"only_if_ssh": true
+			  }
+			}
     ]
   }
 }

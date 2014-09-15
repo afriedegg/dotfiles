@@ -2,19 +2,13 @@
 	"default_module": "powerline.segments.common",
 	"segment_data": {
 		"hostname": {
-			"before": " ",
-			"args": {
-				"only_if_ssh": true
-			}
+			"before": " "
 		},
 		"virtualenv": {
 			"before": "ⓔ  "
 		},
 		"branch": {
-			"before": " ",
-      "args": {
-        "status_colors": false
-      }
+			"before": " "
 		},
     "date": {
       "before": "⌚ "
@@ -27,7 +21,10 @@
 			},
 			{
 				"function": "hostname",
-				"priority": 10
+				"priority": 10,
+			  "args": {
+			  	"only_if_ssh": true
+			  }
 			},
 			{
 				"function": "user",
@@ -53,7 +50,10 @@
 			},
 			{
 				"function": "branch",
-        "priority": 40
+        "priority": 40,
+        "args": {
+          "status_colors": true
+        }
 			},
 			{
 				"function": "date",
