@@ -21,9 +21,9 @@
 		"uptime": { "fg": "gray8", "bg": "gray0", "attr": [] },
 		"external_ip": { "fg": "gray8", "bg": "gray0", "attr": [] },
 		"network_load": { "fg": "gray8", "bg": "gray0", "attr": [] },
-		"network_load_gradient": "mediumgreen_yellow_orange_red",
+		"network_load_gradient": "green_yellow_orange_red",
 		"system_load": { "fg": "gray8", "bg": "gray0", "attr": [] },
-		"system_load_gradient": "mediumgreen_yellow_orange_red",
+		"system_load_gradient": "green_yellow_orange_red",
 		"environment": { "fg": "gray8", "bg": "gray0", "attr": [] },
 		"battery": { "fg": "gray8", "bg": "gray0", "attr": [] },
 		"battery_gradient": "white_red"
