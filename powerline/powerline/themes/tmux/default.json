@@ -27,23 +27,35 @@
   "segments": {
     "right": [
       {
-        "function": "network_load"
+        "function": "network_load",
+        "priority": 50,
+        "args": {
+          "recv_max": 104857600.0,
+          "sent_max": 104857600.0
+        }
       },
       {
         "function": "system_load",
-        "priority": 50
+        "priority": 50,
+        "args": {
+          "threshold_good": 0.5,
+          "threshold_bad": 0.8
+        }
       },
       {
         "function": "uptime",
         "priority": 50
       },
       {
-        "function": "date"
+        "function": "date",
+        "args": {
+          "format": "%a %Y-%m-%d"
+        }
       },
       {
         "function": "date",
         "args": {
-          "format": "%H:%M",
+          "format": "%H:%M:%S",
           "istime": true
         }
       },
