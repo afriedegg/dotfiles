@@ -1,6 +1,9 @@
 {
   "default_module": "powerline.segments.common",
   "segment_data": {
+    "battery": {
+      "before": "⌁"
+    },
     "uptime": {
       "before": "⇑ "
     },
@@ -30,6 +33,8 @@
         "function": "network_load",
         "priority": 50,
         "args": {
+          "recv_format": "↓ {value} ",
+          "sent_format": "↑ {value} ",
           "recv_max": 104857600.0,
           "sent_max": 104857600.0
         }
