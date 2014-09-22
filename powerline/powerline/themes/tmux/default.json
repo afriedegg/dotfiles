@@ -41,11 +41,7 @@
       },
       {
         "function": "system_load",
-        "priority": 50,
-        "args": {
-          "threshold_good": 0.5,
-          "threshold_bad": 0.8
-        }
+        "priority": 50
       },
       {
         "function": "uptime",
