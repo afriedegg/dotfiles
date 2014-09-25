@@ -21,7 +21,7 @@
 			},
 			{
 				"function": "hostname",
-				"priority": 10,
+				"priority": 20,
 			  "args": {
 			  	"only_if_ssh": true
 			  }
@@ -38,7 +38,7 @@
 				"function": "powerline.segments.shell.cwd",
 				"priority": 10,
 				"args": {
-					"dir_limit_depth": 4,
+					"dir_limit_depth": 3,
           "use_shortened_path": false
 				}
 			}

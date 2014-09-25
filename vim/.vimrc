@@ -436,6 +436,7 @@ let g:tex_flavor='latex'
 
 " powerline
 let g:Powerline_symbols = 'fancy'
+set noshowmode " Dont't show the mode under the status line
 
 " vim-jedi
 let g:jedi#popup_on_dot = 0
