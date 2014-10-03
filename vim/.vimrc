@@ -503,6 +503,6 @@ autocmd BufRead,BufNewFile,FileReadPost *.sls set filetype=sls
 autocmd BufRead,BufNewFile,FileReadPost *.vcl set filetype=vcl
 
 " Source a local configuration file if available
-if filereadable("~/.vimrc.local")
+if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
