@@ -77,6 +77,7 @@ Plugin 'xolox/vim-session'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'mileszs/ack.vim'
 Plugin 'othree/html5.vim'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 
